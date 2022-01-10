@@ -64,7 +64,7 @@ export default ({ className, name, label, accept, errors = [], onChange }) => {
                                         ({filesize(file.size)})
                                    </span>
                               </div>
-                              <Button text="Remove" onClick={remove} />
+                              <Button text="Clear" onClick={remove} />
                          </div>
                     )}
                </div>

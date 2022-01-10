@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\SecurityController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\LanguageController;
+use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\WelcomeController;
 
 /*
@@ -22,29 +24,29 @@ use App\Http\Controllers\WelcomeController;
 
 Route::get('/', [WelcomeController::class, 'index']);
 
-Route::get('/img/{path}', [App\Http\Controllers\ImageController::class, 'show'])->where('path', '.*')->name('show.image');
+Route::get('/img/{path}', [ImageController::class, 'show'])->where('path', '.*')->name('show.image');
 
 Route::group(['middleware' => ['auth']], function(){
      // Profile
-     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-     Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
-     Route::post('/profile/{user}/edit', [App\Http\Controllers\HomeController::class, 'postProfile'])->name('profile.save');
-     Route::post('/profile/{user}/password', [App\Http\Controllers\HomeController::class, 'postProfilePassword'])->name('profile.password');
+     Route::get('/home', [HomeController::class, 'index'])->name('home');
+     Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
+     Route::post('/profile/{user}/edit', [HomeController::class, 'postProfile'])->name('profile.save');
+     Route::post('/profile/{user}/password', [HomeController::class, 'postProfilePassword'])->name('profile.password');
 
      // Security -- Roles & Permissions
-     Route::get('/security', [App\Http\Controllers\Admin\SecurityController::class, 'index'])->name('security.index');
+     Route::get('/security', [SecurityController::class, 'index'])->name('security.index');
      // Permissions
-     Route::get('/permission', [App\Http\Controllers\Admin\PermissionController::class, 'create'])->middleware('permission:create-permission')->name('permission.create');
-     Route::post('/permission', [App\Http\Controllers\Admin\PermissionController::class, 'store'])->middleware('permission:create-permission')->name('permission.store');
-     Route::get('/permission/{permission}/edit', [App\Http\Controllers\Admin\PermissionController::class, 'edit'])->middleware('permission:update-permission')->name('permission.edit');
-     Route::put('/permission/{permission}/edit', [App\Http\Controllers\Admin\PermissionController::class, 'update'])->middleware('permission:update-permission')->name('permission.update');
+     Route::get('/permission', [PermissionController::class, 'create'])->middleware('permission:create-permission')->name('permission.create');
+     Route::post('/permission', [PermissionController::class, 'store'])->middleware('permission:create-permission')->name('permission.store');
+     Route::get('/permission/{permission}/edit', [PermissionController::class, 'edit'])->middleware('permission:update-permission')->name('permission.edit');
+     Route::put('/permission/{permission}/edit', [PermissionController::class, 'update'])->middleware('permission:update-permission')->name('permission.update');
      // Roles
-     Route::get('/role', [App\Http\Controllers\Admin\RoleController::class, 'create'])->middleware('permission:create-role')->name('role.create');
-     Route::post('/role', [App\Http\Controllers\Admin\RoleController::class, 'store'])->middleware('permission:create-role')->name('role.store');
-     Route::get('/role/{role}/edit', [App\Http\Controllers\Admin\RoleController::class, 'edit'])->middleware('permission:update-role')->name('role.edit');
-     Route::put('/role/{role}/edit', [App\Http\Controllers\Admin\RoleController::class, 'update'])->middleware('permission:update-role')->name('role.update');
-     Route::get('/role/{role}/assign', [App\Http\Controllers\Admin\RoleController::class, 'getAssign'])->middleware('permission:assign-permission')->name('role.get.assign');
-     Route::post('/role/{role}/assign', [App\Http\Controllers\Admin\RoleController::class, 'postAssign'])->middleware('permission:assign-permission')->name('role.post.assign');
+     Route::get('/role', [RoleController::class, 'create'])->middleware('permission:create-role')->name('role.create');
+     Route::post('/role', [RoleController::class, 'store'])->middleware('permission:create-role')->name('role.store');
+     Route::get('/role/{role}/edit', [RoleController::class, 'edit'])->middleware('permission:update-role')->name('role.edit');
+     Route::put('/role/{role}/edit', [RoleController::class, 'update'])->middleware('permission:update-role')->name('role.update');
+     Route::get('/role/{role}/assign', [RoleController::class, 'getAssign'])->middleware('permission:assign-permission')->name('role.get.assign');
+     Route::post('/role/{role}/assign', [RoleController::class, 'postAssign'])->middleware('permission:assign-permission')->name('role.post.assign');
 
      // Users
      Route::get('/user', [UserController::class, 'index'])->middleware('permission:read-user')->name('user.index');
@@ -56,4 +58,19 @@ Route::group(['middleware' => ['auth']], function(){
      Route::post('/user/{user}/role', [UserController::class, 'postRole'])->middleware('permission:assign-role')->name('user.post.role');
      Route::get('/user/{user}/resetPassword', [UserController::class, 'getResetPassword'])->middleware('permission:change-user-password')->name('user.get.resetpassword');
      Route::post('/user/{user}/resetPassword', [UserController::class, 'postResetPassword'])->middleware('permission:change-user-password')->name('user.post.resetpassword');
+
+     // Languages
+     Route::get('/language', [LanguageController::class, 'index'])->middleware('permission:read-user')->name('language.index');
+     Route::get('/language/create', [LanguageController::class, 'create'])->middleware('permission:read-user')->name('language.create');
+     Route::post('/language/create', [LanguageController::class, 'store'])->middleware('permission:read-user')->name('language.store');
+     Route::get('/language/{language}/edit', [LanguageController::class, 'edit'])->middleware('permission:read-user')->name('language.edit');
+     Route::post('/language/{language}/edit', [LanguageController::class, 'update'])->middleware('permission:read-user')->name('language.update');
+
+     // Medias
+     Route::get('/media', [MediaController::class, 'index'])->middleware('permission:read-user')->name('media.index');
+     Route::get('/media/create', [MediaController::class, 'create'])->middleware('permission:read-user')->name('media.create');
+     Route::post('/media/create', [MediaController::class, 'store'])->middleware('permission:read-user')->name('media.store');
+     Route::get('/media/{media}/show', [MediaController::class, 'show'])->middleware('permission:read-user')->name('media.show');
+     Route::post('/media/{media}/info/create', [MediaController::class, 'createInfo'])->middleware('permission:read-user')->name('media.info.store');
+     Route::post('/media/{media}/info/{info}/edit', [MediaController::class, 'editInfo'])->middleware('permission:read-user')->name('media.info.update');
 });
