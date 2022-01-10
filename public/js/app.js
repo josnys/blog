@@ -713,6 +713,54 @@ eval("\n\nvar GetIntrinsic = __webpack_require__(/*! get-intrinsic */ \"./node_m
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var map = {
+	"./Admin/Language/Create": [
+		"./resources/js/Pages/Admin/Language/Create.js",
+		"resources_js_Pages_Admin_Language_Create_js"
+	],
+	"./Admin/Language/Create.js": [
+		"./resources/js/Pages/Admin/Language/Create.js",
+		"resources_js_Pages_Admin_Language_Create_js"
+	],
+	"./Admin/Language/Edit": [
+		"./resources/js/Pages/Admin/Language/Edit.js",
+		"resources_js_Pages_Admin_Language_Edit_js"
+	],
+	"./Admin/Language/Edit.js": [
+		"./resources/js/Pages/Admin/Language/Edit.js",
+		"resources_js_Pages_Admin_Language_Edit_js"
+	],
+	"./Admin/Language/Index": [
+		"./resources/js/Pages/Admin/Language/Index.js",
+		"resources_js_Pages_Admin_Language_Index_js"
+	],
+	"./Admin/Language/Index.js": [
+		"./resources/js/Pages/Admin/Language/Index.js",
+		"resources_js_Pages_Admin_Language_Index_js"
+	],
+	"./Admin/Media/Create": [
+		"./resources/js/Pages/Admin/Media/Create.js",
+		"resources_js_Pages_Admin_Media_Create_js"
+	],
+	"./Admin/Media/Create.js": [
+		"./resources/js/Pages/Admin/Media/Create.js",
+		"resources_js_Pages_Admin_Media_Create_js"
+	],
+	"./Admin/Media/Index": [
+		"./resources/js/Pages/Admin/Media/Index.js",
+		"resources_js_Pages_Admin_Media_Index_js"
+	],
+	"./Admin/Media/Index.js": [
+		"./resources/js/Pages/Admin/Media/Index.js",
+		"resources_js_Pages_Admin_Media_Index_js"
+	],
+	"./Admin/Media/Show": [
+		"./resources/js/Pages/Admin/Media/Show.js",
+		"resources_js_Pages_Admin_Media_Show_js"
+	],
+	"./Admin/Media/Show.js": [
+		"./resources/js/Pages/Admin/Media/Show.js",
+		"resources_js_Pages_Admin_Media_Show_js"
+	],
 	"./Admin/Security/AssignPermission": [
 		"./resources/js/Pages/Admin/Security/AssignPermission.js",
 		"resources_js_Pages_Admin_Security_AssignPermission_js"
@@ -1027,7 +1075,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "js/" + chunkId + ".js?id=" + {"resources_js_Pages_Admin_Security_AssignPermission_js":"4d8f68cb95c8f6f83343","resources_js_Pages_Admin_Security_CreatePermission_js":"0cd325fce34fefdf89a2","resources_js_Pages_Admin_Security_CreateRole_js":"db0b34d36bede5d0e41b","resources_js_Pages_Admin_Security_EditPermission_js":"865d848897e01499acf9","resources_js_Pages_Admin_Security_EditRole_js":"cdb2b914b2c32ae70628","resources_js_Pages_Admin_Security_Index_js":"6bf1babba7b925fe82a7","resources_js_Pages_Admin_User_ChangePassword_js":"86cbd6f2f280321afb17","resources_js_Pages_Admin_User_Create_js":"6d24352888edcf94037a","resources_js_Pages_Admin_User_Edit_js":"8ae16e4f3342ded805c2","resources_js_Pages_Admin_User_Index_js":"e0b70e32bf09f29a0b07","resources_js_Pages_Admin_User_Role_js":"25b77a55cfbb32e3829f","resources_js_Pages_Auth_ForgotPassword_js":"0983dfe84af04f78474a","resources_js_Pages_Auth_Login_js":"3e0a583f0097d3d6b933","resources_js_Pages_Auth_Register_js":"9fe145a85f14f7d33395","resources_js_Pages_Auth_ResetPassword_js":"bc305ef6ff839e7fcd45","resources_js_Pages_Auth_VerifyEmail_js":"ae1e8b7417f7144623cc","resources_js_Pages_Components_PasswordEditCard_js":"3ce396c566347f0e135c","resources_js_Pages_Components_ProfileEditCard_js":"c1533607cbdfe81e3580","resources_js_Pages_Dashboard_Home_js":"20604bc70967ea885a4b","resources_js_Pages_Dashboard_User_Profile_js":"83dd94458674890ada42","resources_js_Pages_Welcome_js":"76354d1e2344e5090d00"}[chunkId] + "";
+/******/ 			return "js/" + chunkId + ".js?id=" + {"resources_js_Pages_Admin_Language_Create_js":"e48b6dc72bfdc5dc39e0","resources_js_Pages_Admin_Language_Edit_js":"d48e55620bf95d01258a","resources_js_Pages_Admin_Language_Index_js":"66b56590b040063c5f6f","resources_js_Pages_Admin_Media_Create_js":"9025b1ed137592b9a0a2","resources_js_Pages_Admin_Media_Index_js":"84138cd87402e35fb112","resources_js_Pages_Admin_Media_Show_js":"484f0da6429f84026f35","resources_js_Pages_Admin_Security_AssignPermission_js":"695fbdea4a3166288b00","resources_js_Pages_Admin_Security_CreatePermission_js":"ea5f08e907ee9e39a4cc","resources_js_Pages_Admin_Security_CreateRole_js":"6706c809b0a48d4d5c29","resources_js_Pages_Admin_Security_EditPermission_js":"b0de29fe77cc7ce22c6a","resources_js_Pages_Admin_Security_EditRole_js":"5eaccee02121a50d7ed6","resources_js_Pages_Admin_Security_Index_js":"275c88ba6ca06cdd9ec6","resources_js_Pages_Admin_User_ChangePassword_js":"7a3924236259f48c2644","resources_js_Pages_Admin_User_Create_js":"b056673fd82e1322161e","resources_js_Pages_Admin_User_Edit_js":"85391203001280742504","resources_js_Pages_Admin_User_Index_js":"03abee2d3edb8ab764c0","resources_js_Pages_Admin_User_Role_js":"ae95889932578e2b94ee","resources_js_Pages_Auth_ForgotPassword_js":"0983dfe84af04f78474a","resources_js_Pages_Auth_Login_js":"3e0a583f0097d3d6b933","resources_js_Pages_Auth_Register_js":"9fe145a85f14f7d33395","resources_js_Pages_Auth_ResetPassword_js":"bc305ef6ff839e7fcd45","resources_js_Pages_Auth_VerifyEmail_js":"ae1e8b7417f7144623cc","resources_js_Pages_Components_PasswordEditCard_js":"2253b22b6cbd6cd8adcb","resources_js_Pages_Components_ProfileEditCard_js":"a6efa0c3f39060dfcf30","resources_js_Pages_Dashboard_Home_js":"367a8f6ec9898c162893","resources_js_Pages_Dashboard_User_Profile_js":"a45894399b568d1c1661","resources_js_Pages_Welcome_js":"28cfb6dd7f1bb86e6a9f"}[chunkId] + "";
 /******/ 		};
 /******/ 	})();
 /******/ 	
