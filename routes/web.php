@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\MediaController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\WelcomeController;
 
 /*
@@ -73,4 +75,19 @@ Route::group(['middleware' => ['auth']], function(){
      Route::get('/media/{media}/show', [MediaController::class, 'show'])->middleware('permission:read-user')->name('media.show');
      Route::post('/media/{media}/info/create', [MediaController::class, 'createInfo'])->middleware('permission:read-user')->name('media.info.store');
      Route::post('/media/{media}/info/{info}/edit', [MediaController::class, 'editInfo'])->middleware('permission:read-user')->name('media.info.update');
+
+     // Categories
+     Route::get('/category', [CategoryController::class, 'index'])->middleware('permission:read-user')->name('category.index');
+     Route::get('/category/create', [CategoryController::class, 'create'])->middleware('permission:read-user')->name('category.create');
+     Route::post('/category/create', [CategoryController::class, 'store'])->middleware('permission:read-user')->name('category.store');
+     Route::get('/category/{category}/show', [CategoryController::class, 'show'])->middleware('permission:read-user')->name('category.show');
+     Route::post('/category/{category}/text/create', [CategoryController::class, 'createText'])->middleware('permission:read-user')->name('category.text.store');
+     Route::post('/category/{category}/text/{text}/edit', [CategoryController::class, 'editText'])->middleware('permission:read-user')->name('category.text.update');
+
+     // Sub-Categories
+     Route::get('/category/{category}/sub/create', [SubCategoryController::class, 'create'])->middleware('permission:read-user')->name('subcategory.create');
+     Route::post('/category/{category}/sub/create', [SubCategoryController::class, 'store'])->middleware('permission:read-user')->name('subcategory.store');
+     Route::get('/category/{category}/sub/{subcategory}/show', [SubCategoryController::class, 'show'])->middleware('permission:read-user')->name('subcategory.show');
+     Route::post('/category/{category}/sub/{subcategory}/text/create', [SubCategoryController::class, 'createText'])->middleware('permission:read-user')->name('subcategory.text.store');
+     Route::post('/category/{category}/sub/{subcategory}/text/{text}/edit', [SubCategoryController::class, 'editText'])->middleware('permission:read-user')->name('subcategory.text.update');
 });

@@ -10,9 +10,7 @@ use App\Models\Media;
 use App\Models\MediaInfo;
 use App\Models\Language;
 use App\Actions\Image\ImageManipulationAction;
-// use Image;
 use Inertia\Inertia;
-// use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
 
 class MediaController extends Controller

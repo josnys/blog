@@ -8,18 +8,18 @@ export default ({ icon, link, text }) => {
      const isActive = url.startsWith('/'+link.split('.')[0]);
 
      const iconClasses = classNames('w-4 h-4 mr-2', {
-          'text-gray-700 fill-current': isActive,
-          'text-gray-600 hover:text-gray-700 fill-current': !isActive
+          'text-gray-600 fill-current': isActive,
+          'text-gray-500 hover:text-gray-600 fill-current': !isActive
      });
 
      const textClasses = classNames({
-          'text-gray-700 font-semibold': isActive,
-          'text-gray-600 hover:text-gray-700 hover:font-semibold': !isActive
+          'text-gray-600 font-semibold': isActive,
+          'text-gray-500 hover:text-gray-600 hover:font-semibold': !isActive
      });
 
      return (
-          <div className="mb-2">
-               <InertiaLink href={route(link)} className={`flex items-center group p-2 ${isActive?'bg-gray-400 rounded':''}`}>
+          <div className="mb-1">
+               <InertiaLink href={route(link)} className={`flex items-center group py-1 px-2 ${isActive?'bg-gray-200 rounded':''}`}>
                     <Icon name={icon} className={iconClasses} />
                     <div className={textClasses}>{text}</div>
                </InertiaLink>

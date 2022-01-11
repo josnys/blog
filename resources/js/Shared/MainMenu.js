@@ -11,6 +11,7 @@ export default ({ className }) => {
                {can(auth.user, 'read-user')?<MainMenuItem text="Users" link="user.index" icon="user-group" />:null}
                {can(auth.user, 'read-user')?<MainMenuItem text="Languages" link="language.index" icon="lang" />:null}
                {can(auth.user, 'read-user')?<MainMenuItem text="Medias" link="media.index" icon="camera" />:null}
+               {can(auth.user, 'read-user')?<MainMenuItem text="Categories" link="category.index" icon="category" />:null}
           </div>
      );
 };
