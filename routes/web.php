@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SubCategoryController;
+use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\WelcomeController;
 
 /*
@@ -75,6 +76,13 @@ Route::group(['middleware' => ['auth']], function(){
      Route::get('/media/{media}/show', [MediaController::class, 'show'])->middleware('permission:read-user')->name('media.show');
      Route::post('/media/{media}/info/create', [MediaController::class, 'createInfo'])->middleware('permission:read-user')->name('media.info.store');
      Route::post('/media/{media}/info/{info}/edit', [MediaController::class, 'editInfo'])->middleware('permission:read-user')->name('media.info.update');
+
+     // Galleries
+     Route::get('/media/gallery', [GalleryController::class, 'index'])->middleware('permission:read-user')->name('gallery.index');
+     Route::get('/media/gallery/create', [GalleryController::class, 'create'])->middleware('permission:read-user')->name('gallery.create');
+     Route::post('/media/gallery/create', [GalleryController::class, 'store'])->middleware('permission:read-user')->name('gallery.store');
+     Route::get('/media/gallery/{gallery}/edit', [GalleryController::class, 'edit'])->middleware('permission:read-user')->name('gallery.edit');
+     Route::post('/media/gallery/{gallery}/edit', [GalleryController::class, 'update'])->middleware('permission:read-user')->name('gallery.update');
 
      // Categories
      Route::get('/category', [CategoryController::class, 'index'])->middleware('permission:read-user')->name('category.index');

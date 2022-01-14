@@ -692,17 +692,17 @@ video {
 .mb-8 {
 	margin-bottom: 2rem;
 }
-.mb-2 {
-	margin-bottom: 0.5rem;
+.mb-1 {
+	margin-bottom: 0.25rem;
 }
 .ml-auto {
 	margin-left: auto;
 }
-.mb-1 {
-	margin-bottom: 0.25rem;
-}
 .mt-2 {
 	margin-top: 0.5rem;
+}
+.mb-2 {
+	margin-bottom: 0.5rem;
 }
 .mb-4 {
 	margin-bottom: 1rem;
@@ -891,9 +891,6 @@ video {
 .list-none {
 	list-style-type: none;
 }
-.list-disc {
-	list-style-type: disc;
-}
 .appearance-none {
 	-webkit-appearance: none;
 	   -moz-appearance: none;
@@ -1029,6 +1026,10 @@ video {
 	--tw-border-opacity: 1;
 	border-color: rgba(245, 158, 11, var(--tw-border-opacity));
 }
+.border-purple-500 {
+	--tw-border-opacity: 1;
+	border-color: rgba(139, 92, 246, var(--tw-border-opacity));
+}
 .bg-white {
 	--tw-bg-opacity: 1;
 	background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
@@ -1067,10 +1068,6 @@ video {
 .bg-red-800 {
 	--tw-bg-opacity: 1;
 	background-color: rgba(153, 27, 27, var(--tw-bg-opacity));
-}
-.bg-gray-400 {
-	--tw-bg-opacity: 1;
-	background-color: rgba(156, 163, 175, var(--tw-bg-opacity));
 }
 .bg-gray-200 {
 	--tw-bg-opacity: 1;
@@ -1498,6 +1495,11 @@ video {
 	color: rgba(185, 28, 28, var(--tw-text-opacity));
 }
 
+.hover\:text-gray-600:hover {
+	--tw-text-opacity: 1;
+	color: rgba(75, 85, 99, var(--tw-text-opacity));
+}
+
 .hover\:text-gray-900:hover {
 	--tw-text-opacity: 1;
 	color: rgba(17, 24, 39, var(--tw-text-opacity));
@@ -1508,16 +1510,6 @@ video {
 	color: rgba(31, 41, 55, var(--tw-text-opacity));
 }
 
-.hover\:text-gray-500:hover {
-	--tw-text-opacity: 1;
-	color: rgba(107, 114, 128, var(--tw-text-opacity));
-}
-
-.hover\:text-gray-600:hover {
-	--tw-text-opacity: 1;
-	color: rgba(75, 85, 99, var(--tw-text-opacity));
-}
-
 .hover\:text-blue-600:hover {
 	--tw-text-opacity: 1;
 	color: rgba(37, 99, 235, var(--tw-text-opacity));
@@ -1526,6 +1518,11 @@ video {
 .hover\:text-blue-700:hover {
 	--tw-text-opacity: 1;
 	color: rgba(29, 78, 216, var(--tw-text-opacity));
+}
+
+.hover\:text-gray-500:hover {
+	--tw-text-opacity: 1;
+	color: rgba(107, 114, 128, var(--tw-text-opacity));
 }
 
 .hover\:underline:hover {

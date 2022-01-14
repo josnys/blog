@@ -753,6 +753,30 @@ var map = {
 		"./resources/js/Pages/Admin/Category/Sub/Show.js",
 		"resources_js_Pages_Admin_Category_Sub_Show_js"
 	],
+	"./Admin/Gallery/Create": [
+		"./resources/js/Pages/Admin/Gallery/Create.js",
+		"resources_js_Pages_Admin_Gallery_Create_js"
+	],
+	"./Admin/Gallery/Create.js": [
+		"./resources/js/Pages/Admin/Gallery/Create.js",
+		"resources_js_Pages_Admin_Gallery_Create_js"
+	],
+	"./Admin/Gallery/Index": [
+		"./resources/js/Pages/Admin/Gallery/Index.js",
+		"resources_js_Pages_Admin_Gallery_Index_js"
+	],
+	"./Admin/Gallery/Index.js": [
+		"./resources/js/Pages/Admin/Gallery/Index.js",
+		"resources_js_Pages_Admin_Gallery_Index_js"
+	],
+	"./Admin/Gallery/Show": [
+		"./resources/js/Pages/Admin/Gallery/Show.js",
+		"resources_js_Pages_Admin_Gallery_Show_js"
+	],
+	"./Admin/Gallery/Show.js": [
+		"./resources/js/Pages/Admin/Gallery/Show.js",
+		"resources_js_Pages_Admin_Gallery_Show_js"
+	],
 	"./Admin/Language/Create": [
 		"./resources/js/Pages/Admin/Language/Create.js",
 		"resources_js_Pages_Admin_Language_Create_js"
@@ -1115,7 +1139,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "js/" + chunkId + ".js?id=" + {"resources_js_Pages_Admin_Category_Create_js":"473922dc1de15dd7b211","resources_js_Pages_Admin_Category_Index_js":"31ef8e881b25fc909f3a","resources_js_Pages_Admin_Category_Show_js":"b8ce84bcd008a52ae30a","resources_js_Pages_Admin_Category_Sub_Create_js":"b552c932a6087370fb1a","resources_js_Pages_Admin_Category_Sub_Show_js":"d88a4851378b9150e52e","resources_js_Pages_Admin_Language_Create_js":"69d0f957b5dcd15660e7","resources_js_Pages_Admin_Language_Edit_js":"ca4693a657d40cb23ebb","resources_js_Pages_Admin_Language_Index_js":"42deb7cbf66b710e9ac5","resources_js_Pages_Admin_Media_Create_js":"d7bb5e701f641474e2e4","resources_js_Pages_Admin_Media_Index_js":"80a87eb2704d638d19dc","resources_js_Pages_Admin_Media_Show_js":"45bd180cb4c82927b31d","resources_js_Pages_Admin_Security_AssignPermission_js":"0047f695966bfb22465f","resources_js_Pages_Admin_Security_CreatePermission_js":"305054834f80dfcda15f","resources_js_Pages_Admin_Security_CreateRole_js":"4132bccf6a4a66764bfc","resources_js_Pages_Admin_Security_EditPermission_js":"193dceb406412863b16e","resources_js_Pages_Admin_Security_EditRole_js":"dd09a33b50300104642e","resources_js_Pages_Admin_Security_Index_js":"63ec63ba70a4b1ec87ff","resources_js_Pages_Admin_User_ChangePassword_js":"9fbad28fd880114acb6e","resources_js_Pages_Admin_User_Create_js":"a258e157dfec7bf8b55c","resources_js_Pages_Admin_User_Edit_js":"bce3fee4a67d123213a3","resources_js_Pages_Admin_User_Index_js":"b1d0131c067bc41396b1","resources_js_Pages_Admin_User_Role_js":"59726f785e28fc0216bc","resources_js_Pages_Auth_ForgotPassword_js":"0983dfe84af04f78474a","resources_js_Pages_Auth_Login_js":"3e0a583f0097d3d6b933","resources_js_Pages_Auth_Register_js":"9fe145a85f14f7d33395","resources_js_Pages_Auth_ResetPassword_js":"bc305ef6ff839e7fcd45","resources_js_Pages_Auth_VerifyEmail_js":"ae1e8b7417f7144623cc","resources_js_Pages_Components_PasswordEditCard_js":"2253b22b6cbd6cd8adcb","resources_js_Pages_Components_ProfileEditCard_js":"a6efa0c3f39060dfcf30","resources_js_Pages_Dashboard_Home_js":"4e476b3445d376c3ac03","resources_js_Pages_Dashboard_User_Profile_js":"a42146c41766490dd813","resources_js_Pages_Welcome_js":"28cfb6dd7f1bb86e6a9f"}[chunkId] + "";
+/******/ 			return "js/" + chunkId + ".js?id=" + {"resources_js_Pages_Admin_Category_Create_js":"473922dc1de15dd7b211","resources_js_Pages_Admin_Category_Index_js":"31ef8e881b25fc909f3a","resources_js_Pages_Admin_Category_Show_js":"b8ce84bcd008a52ae30a","resources_js_Pages_Admin_Category_Sub_Create_js":"b552c932a6087370fb1a","resources_js_Pages_Admin_Category_Sub_Show_js":"d88a4851378b9150e52e","resources_js_Pages_Admin_Gallery_Create_js":"aaf7af89bf40bae0b7b5","resources_js_Pages_Admin_Gallery_Index_js":"958e906a2f51ba0fb7bb","resources_js_Pages_Admin_Gallery_Show_js":"babb6c0d2f21c0803f97","resources_js_Pages_Admin_Language_Create_js":"69d0f957b5dcd15660e7","resources_js_Pages_Admin_Language_Edit_js":"ca4693a657d40cb23ebb","resources_js_Pages_Admin_Language_Index_js":"42deb7cbf66b710e9ac5","resources_js_Pages_Admin_Media_Create_js":"d7bb5e701f641474e2e4","resources_js_Pages_Admin_Media_Index_js":"b9ae16a07d3906632585","resources_js_Pages_Admin_Media_Show_js":"45bd180cb4c82927b31d","resources_js_Pages_Admin_Security_AssignPermission_js":"0047f695966bfb22465f","resources_js_Pages_Admin_Security_CreatePermission_js":"305054834f80dfcda15f","resources_js_Pages_Admin_Security_CreateRole_js":"4132bccf6a4a66764bfc","resources_js_Pages_Admin_Security_EditPermission_js":"193dceb406412863b16e","resources_js_Pages_Admin_Security_EditRole_js":"dd09a33b50300104642e","resources_js_Pages_Admin_Security_Index_js":"63ec63ba70a4b1ec87ff","resources_js_Pages_Admin_User_ChangePassword_js":"9fbad28fd880114acb6e","resources_js_Pages_Admin_User_Create_js":"a258e157dfec7bf8b55c","resources_js_Pages_Admin_User_Edit_js":"bce3fee4a67d123213a3","resources_js_Pages_Admin_User_Index_js":"b1d0131c067bc41396b1","resources_js_Pages_Admin_User_Role_js":"59726f785e28fc0216bc","resources_js_Pages_Auth_ForgotPassword_js":"0983dfe84af04f78474a","resources_js_Pages_Auth_Login_js":"3e0a583f0097d3d6b933","resources_js_Pages_Auth_Register_js":"9fe145a85f14f7d33395","resources_js_Pages_Auth_ResetPassword_js":"bc305ef6ff839e7fcd45","resources_js_Pages_Auth_VerifyEmail_js":"ae1e8b7417f7144623cc","resources_js_Pages_Components_PasswordEditCard_js":"2253b22b6cbd6cd8adcb","resources_js_Pages_Components_ProfileEditCard_js":"a6efa0c3f39060dfcf30","resources_js_Pages_Dashboard_Home_js":"4e476b3445d376c3ac03","resources_js_Pages_Dashboard_User_Profile_js":"a42146c41766490dd813","resources_js_Pages_Welcome_js":"28cfb6dd7f1bb86e6a9f"}[chunkId] + "";
 /******/ 		};
 /******/ 	})();
 /******/ 	
