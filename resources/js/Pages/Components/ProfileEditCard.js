@@ -36,7 +36,7 @@ const ProfileEditCard = () => {
 
      function handleSubmit(e) {
           e.preventDefault();
-          post(route('profile.save', user.id));
+          post(route('admin.profile.save', user.id));
      }
      return (
           <React.Fragment key="uprofile">

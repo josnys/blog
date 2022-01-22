@@ -21,7 +21,7 @@ const Create = () => {
 
      function handleSubmit(e) {
           e.preventDefault();
-          post(route('category.store'));
+          post(route('admin.category.store'));
      }
 
      return (
@@ -43,7 +43,7 @@ const Create = () => {
                               <div className="px-4 py-5 sm:p-6">
                                    <div className="grid grid-cols-6 gap-6">
                                         <div className="col-span-12 text-right">
-                                             <BackButton link={'category.index'} linkParams={''} />
+                                             <BackButton link={'admin.category.index'} linkParams={''} />
                                         </div>
                                         <div className="col-span-12">
                                              <SelectInput

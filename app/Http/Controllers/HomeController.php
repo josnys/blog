@@ -85,7 +85,7 @@ class HomeController extends Controller
                $user->username = $request->get('username');
                $user->email = $request->get('email');
                $user->update();
-               return redirect()->route('profile')->with('success', 'Profile updated successfully.');
+               return redirect()->route('admin.profile')->with('success', 'Profile updated successfully.');
           } catch (\Exception $e) {
                Log::error('Home post profile', ['data' => $e]);
                return redirect()->back()->with('error', User::serverError());

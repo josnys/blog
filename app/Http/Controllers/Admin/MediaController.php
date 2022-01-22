@@ -58,7 +58,7 @@ class MediaController extends Controller
                     $media->save();
                }
 
-               return redirect()->route('media.index')->with('success', 'Media uploaded successfully.');
+               return redirect()->route('admin.media.index')->with('success', 'Media uploaded successfully.');
           } catch (\Exception $e) {
                Log::error('MediaController store', ['data' => $e]);
                return redirect()->back()->with('error', $this->serverError());
@@ -112,7 +112,7 @@ class MediaController extends Controller
                $info->description = $input['description'];
                $info->is_active = true;
                $info->save();
-               return redirect()->route('media.show', $media->id)->with('success', 'Media details successfully saved.');
+               return redirect()->route('admin.media.show', $media->id)->with('success', 'Media details successfully saved.');
           } catch (\Exception $e) {
                Log::error('MediaController createInfo', ['data' => $e]);
                return redirect()->back()->with('error', $this->serverError());
@@ -126,7 +126,7 @@ class MediaController extends Controller
                $info->title = $input['title'];
                $info->description = $input['description'];
                $info->update();
-               return redirect()->route('media.show', $media->id)->with('success', 'Media details successfully updated.');
+               return redirect()->route('admin.media.show', $media->id)->with('success', 'Media details successfully updated.');
           } catch (\Exception $e) {
                Log::error('MediaController createInfo', ['data' => $e]);
                return redirect()->back()->with('error', $this->serverError());

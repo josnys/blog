@@ -54,9 +54,9 @@ const Show = () => {
      function handleSubmit(e) {
           e.preventDefault();
           if(data.edit){
-               post(route('subcategory.text.update', [info.category.id, info.id, data.id]), {preserveState:false});
+               post(route('admin.subcategory.text.update', [info.category.id, info.id, data.id]), {preserveState:false});
           }else{
-               post(route('subcategory.text.store', info.category.id));
+               post(route('admin.subcategory.text.store', info.category.id));
           }
      }
 
@@ -79,7 +79,7 @@ const Show = () => {
                               <div className="px-4 py-5 sm:p-6">
                                    <div className="grid grid-cols-6 gap-6">
                                         <div className="col-span-12 text-right">
-                                             <BackButton link={'category.show'} linkParams={info.category.id} />
+                                             <BackButton link={'admin.category.show'} linkParams={info.category.id} />
                                         </div>
                                         <div className="col-span-12">
                                              <SelectInput

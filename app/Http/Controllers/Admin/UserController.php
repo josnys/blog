@@ -106,7 +106,7 @@ class UserController extends Controller
                     }
                     $user->save();
                });
-               return redirect()->route('user.index')->with('success', 'User saved successfully.');
+               return redirect()->route('admin.user.index')->with('success', 'User saved successfully.');
           } catch (\Exception $e) {
                Log::error('User store', ['data' => $e]);
                return redirect()->back()->with('error', User::serverError());
@@ -159,7 +159,7 @@ class UserController extends Controller
 
                     $user->update();
                });
-               return redirect()->route('user.index')->with('success', 'User updated successfully.');
+               return redirect()->route('admin.user.index')->with('success', 'User updated successfully.');
           } catch (\Exception $e) {
                Log::error('User update', ['data' => $e]);
                return redirect()->back()->with('error', User::serverError());
@@ -213,7 +213,7 @@ class UserController extends Controller
                     'user_roles.*' => ['integer'],
                ]);
                $user->syncRoles($request->get('user_roles'));
-               return redirect()->route('user.index')->with('success', 'Role successfully assigned to '.$user->name);
+               return redirect()->route('admin.user.index')->with('success', 'Role successfully assigned to '.$user->name);
           } catch (\Exception $e) {
                Log::error('User post role', ['data' => $e]);
                return redirect()->back()->with('error', User::serverError());
@@ -243,7 +243,7 @@ class UserController extends Controller
                     $user->pin = $request->get('pin');
                }
                $user->update();
-               return redirect()->route('user.index')->with('success', 'User Password changed successfully.');
+               return redirect()->route('admin.user.index')->with('success', 'User Password changed successfully.');
           } catch (\Exception $e) {
                Log::error('User post reset password', ['data' => $e]);
                return redirect()->back()->with('error', User::serverError());

@@ -71,7 +71,7 @@ function Role() {
 
      function handleSubmit(e) {
           e.preventDefault();
-          post(route('user.post.role', info.user.id));
+          post(route('admin.user.post.role', info.user.id));
      }
 
      return (
@@ -91,7 +91,7 @@ function Role() {
                               <div className="px-4 py-5 sm:p-6">
                                    <div className="grid grid-cols-3">
                                         <div className="col-span-12 text-right">
-                                             <BackButton link={'user.index'} linkParams={''} />
+                                             <BackButton link={'admin.user.index'} linkParams={''} />
                                         </div>
                                         <div className="sm:col-span-4">
                                              <div className="flex mt-4">

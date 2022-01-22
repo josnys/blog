@@ -80,7 +80,7 @@ class SubCategoryController extends Controller
                $text->name = $input['name'];
                $text->save();
 
-               return redirect()->route('category.show', $category->id)->with('success', 'Sub-Category saved successfully.');
+               return redirect()->route('admin.category.show', $category->id)->with('success', 'Sub-Category saved successfully.');
           } catch (\Exception $e) {
                Log::error('SubCategoryController store', ['data' => $e]);
                return redirect()->back()->with('error', $this->serverError());
@@ -138,7 +138,7 @@ class SubCategoryController extends Controller
                $text->language_id = $input['lang'];
                $text->name = $input['name'];
                $text->save();
-               return redirect()->route('subcategory.show', [$category->id, $subcategory->id])->with('success', 'Sub-Category Translation successfully saved.');
+               return redirect()->route('admin.subcategory.show', [$category->id, $subcategory->id])->with('success', 'Sub-Category Translation successfully saved.');
           } catch (\Exception $e) {
                Log::error('SubCategoryController createText', ['data' => $e]);
                return redirect()->back()->with('error', $this->serverError());
@@ -156,7 +156,7 @@ class SubCategoryController extends Controller
 
                $text->name = $input['name'];
                $text->update();
-               return redirect()->route('subcategory.show', [$category->id, $subcategory->id])->with('success', 'Category Translation successfully updated.');
+               return redirect()->route('admin.subcategory.show', [$category->id, $subcategory->id])->with('success', 'Category Translation successfully updated.');
           } catch (\Exception $e) {
                Log::error('SubCategoryController editText', ['data' => $e]);
                return redirect()->back()->with('error', $this->serverError());

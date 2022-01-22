@@ -1,15 +1,18 @@
 module.exports = {
      mode: 'jit',
-     purge: [
+     content: [
           './resources/**/*.js',
           './src/**/*.{js,jsx,ts,tsx,vue}',
      ],
-     darkMode: false, // or 'media' or 'class'
+     darkMode: 'media', // or 'media' or 'class'
      theme: {
           extend: {},
      },
      variants: {
           extend: {},
      },
-     plugins: [],
+     plugins: [
+          require('@tailwindcss/typography'),
+          require('@tailwindcss/aspect-ratio'),
+     ],
 }

@@ -67,7 +67,7 @@ class PermissionController extends Controller
                $permission->description = $request->get('description');
                $permission->update();
 
-               return redirect()->route('permission.create')->with('success', 'Permission Updated.');
+               return redirect()->route('admin.permission.create')->with('success', 'Permission Updated.');
           } catch (\Exception $e) {
                Log::error('Permission update', ['data' => $e]);
                return redirect()->back()->with('error', Permission::serverError());

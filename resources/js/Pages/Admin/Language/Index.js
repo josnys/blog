@@ -18,11 +18,11 @@ const Index = () => {
                     <title>Languages</title>
                </Helmet>
                <div className="max-w-7xl mx-auto p-2">
-                    <InertiaLink className="font-semibold text-md text-gray-700 hover:text-gray-800 leading-tight" href={route('home')}>Dashboard</InertiaLink> | <span className="text-md text-gray-700 leading-tight">Languages</span>
+                    <InertiaLink className="font-semibold text-md text-gray-700 hover:text-gray-800 leading-tight" href={route('admin.home')}>Dashboard</InertiaLink> | <span className="text-md text-gray-700 leading-tight">Languages</span>
                </div>
                <DataContainer>
                     <div className="col-span-12">
-                         {can(auth.user, 'create-user') && (<AddButton caption={'Add Language'} link={'language.create'} linkParams={''} />)}
+                         {can(auth.user, 'create-user') && (<AddButton caption={'Add Language'} link={'admin.language.create'} linkParams={''} />)}
                     </div>
                     <table className="table-fixed col-span-12 text-sm">
                          <thead className="bg-gray-300">
@@ -46,7 +46,7 @@ const Index = () => {
                                         <td className={`border px-2 py-1 ${status?'text-green-600':'text-red-600'}`}>{statusCaption}</td>
                                         <td className="border px-2 py-1">
                                              <DropdownButton caption="Actions" color="blue">
-                                                  {can(auth.user, 'update-user') && (<InertiaLink href={route('language.edit', id)} className="flex block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
+                                                  {can(auth.user, 'update-user') && (<InertiaLink href={route('admin.language.edit', id)} className="flex block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
                                                        <Icon name={'edit'} className={'fill-current w-5 h-5 mr-2'} />
                                                        Edit
                                                   </InertiaLink>)}

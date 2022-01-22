@@ -35,7 +35,7 @@ function CreatePermission() {
 
      function handleSubmit(e) {
           e.preventDefault();
-          post(route('permission.store'), {
+          post(route('admin.permission.store'), {
                onSuccess: () => reset()
           });
      }
@@ -59,7 +59,7 @@ function CreatePermission() {
                               <div className="px-4 py-5 sm:p-6">
                                    <div className="grid grid-cols-3 gap-3">
                                         <div className="col-span-12 text-right">
-                                             <BackButton link={'security.index'} linkParams={''} />
+                                             <BackButton link={'admin.security.index'} linkParams={''} />
                                         </div>
                                         <div className="col-span-6 sm:col-span-4">
                                              <TextInput
@@ -131,7 +131,7 @@ function CreatePermission() {
                                         <td className="border px-4 py-2">{name}</td>
                                         <td className="border px-4 py-2">{description}</td>
                                         <td className="border px-4 py-2">
-                                             <InertiaLink href={route('permission.edit', id)} className="bg-blue-300 hover:bg-blue-400 mr-2 text-blue-800 text-sm py-1 px-1 rounded inline-flex items-center">
+                                             <InertiaLink href={route('admin.permission.edit', id)} className="bg-blue-300 hover:bg-blue-400 mr-2 text-blue-800 text-sm py-1 px-1 rounded inline-flex items-center">
                                                   <Icon name={'edit'} className={'fill-current w-4 h-4 mr-2'} />
                                                   Edit
                                              </InertiaLink>

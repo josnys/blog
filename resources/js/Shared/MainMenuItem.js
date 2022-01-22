@@ -5,7 +5,7 @@ import Icon from './Icon';
 
 export default ({ icon, link, text }) => {
      const { url } = usePage();
-     const isActive = url.startsWith('/'+link.split('.')[0]);
+     const isActive = url.startsWith('/admin/'+link.split('.')[1]);
 
      const iconClasses = classNames('w-4 h-4 mr-2', {
           'text-gray-600 fill-current': isActive,

@@ -51,9 +51,9 @@ const Show = () => {
      function handleSubmit(e) {
           e.preventDefault();
           if(data.edit){
-               post(route('media.info.update', [info.id, data.id]), {preserveState:false});
+               post(route('admin.media.info.update', [info.id, data.id]), {preserveState:false});
           }else{
-               post(route('media.info.store', info.id));
+               post(route('admin.media.info.store', info.id));
           }
      }
 
@@ -74,7 +74,7 @@ const Show = () => {
                               <div className="px-4 py-5 sm:p-6">
                                    <div className="grid grid-cols-6 gap-6">
                                         <div className="col-span-12 text-right">
-                                             <BackButton link={'media.index'} linkParams={''} />
+                                             <BackButton link={'admin.media.index'} linkParams={''} />
                                         </div>
                                         <div className="col-span-12">
                                              <SelectInput

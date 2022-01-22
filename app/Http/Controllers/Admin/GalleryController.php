@@ -77,7 +77,7 @@ class GalleryController extends Controller
                     $detail->save();
                }
 
-               return redirect()->route('media.index')->with('success', 'Gallery saved successfully.');
+               return redirect()->route('admin.media.index')->with('success', 'Gallery saved successfully.');
           } catch (\Exception $e) {
                Log::error('GalleryController store', ['data' => $e]);
                return redirect()->back()->with('error', $this->serverError());
@@ -160,7 +160,7 @@ class GalleryController extends Controller
                     $detail->save();
                }
 
-               return redirect()->route('gallery.index')->with('success', 'Gallery updated successfully.');
+               return redirect()->route('admin.gallery.index')->with('success', 'Gallery updated successfully.');
           } catch (\Exception $e) {
                Log::error('GalleryController update', ['data' => $e]);
                return redirect()->back()->with('error', $this->serverError());

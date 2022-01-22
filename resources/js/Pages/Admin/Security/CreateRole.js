@@ -37,7 +37,7 @@ function CreateRole() {
 
      function handleSubmit(e) {
           e.preventDefault();
-          post(route('role.store'), {
+          post(route('admin.role.store'), {
                onSuccess: () => reset()
           });
      }
@@ -61,7 +61,7 @@ function CreateRole() {
                               <div className="px-4 py-5 sm:p-6">
                                    <div className="grid grid-cols-3 gap-3">
                                         <div className="col-span-12 text-right">
-                                             <BackButton link={'security.index'} linkParams={''} />
+                                             <BackButton link={'admin.security.index'} linkParams={''} />
                                         </div>
                                         <div className="col-span-6 sm:col-span-4">
                                              <TextInput
@@ -134,11 +134,11 @@ function CreateRole() {
                                         <td className="border px-4 py-2">{description}</td>
                                         <td className="border px-4 py-2">
                                              <DropdownButton caption="Actions" color="blue">
-                                                  <InertiaLink href={route('role.edit', id)} className="flex block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
+                                                  <InertiaLink href={route('admin.role.edit', id)} className="flex block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
                                                        <Icon name={'edit'} className={'fill-current w-5 h-5 mr-2'} />
                                                        Edit
                                                   </InertiaLink>
-                                                  <InertiaLink href={route('role.get.assign', id)} className="flex block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
+                                                  <InertiaLink href={route('admin.role.get.assign', id)} className="flex block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
                                                        <Icon name={'cheveron-right'} className={'fill-current w-5 h-5 mr-2'} />
                                                        Assign Permission
                                                   </InertiaLink>

@@ -18,6 +18,11 @@ class Media extends Model
           return $this->hasMany(MediaInfo::class);
      }
 
+     public function scopeActive($query)
+     {
+          return $query->where('is_active', true);
+     }
+
      public function getThumbUrlAttribute()
      {
           return ($this->name && Storage::disk('local')->exists('medias/images/thumbnails/'.$this->name)) ? route('show.image', 'medias/images/thumbnails/'.$this->name) : null;

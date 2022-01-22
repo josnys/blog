@@ -30,7 +30,7 @@ const Create = () => {
 
      function handleSubmit(e) {
           e.preventDefault();
-          post(route('language.store'));
+          post(route('admin.language.store'));
      }
 
      return (
@@ -52,7 +52,7 @@ const Create = () => {
                               <div className="px-4 py-5 sm:p-6">
                                    <div className="grid grid-cols-6 gap-6">
                                         <div className="col-span-12 text-right">
-                                             <BackButton link={'language.index'} linkParams={''} />
+                                             <BackButton link={'admin.language.index'} linkParams={''} />
                                         </div>
                                         <div className="col-span-12">
                                              <label className="block font-medium text-sm text-gray-700" htmlFor="avatar">

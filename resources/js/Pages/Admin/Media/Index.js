@@ -18,9 +18,9 @@ const Index = () => {
                     <title>Medias</title>
                </Helmet>
                <div className="max-w-7xl mx-auto p-2">
-                    <InertiaLink className="font-semibold text-md text-gray-700 hover:text-gray-800 leading-tight" href={route('home')}>Dashboard</InertiaLink> | <span className="text-md text-gray-700 leading-tight">Medias</span>
+                    <InertiaLink className="font-semibold text-md text-gray-700 hover:text-gray-800 leading-tight" href={route('admin.home')}>Dashboard</InertiaLink> | <span className="text-md text-gray-700 leading-tight">Medias</span>
                     <div className="float-right">
-                         <InertiaLink className="font-semibold text-md text-gray-700 hover:text-gray-800 leading-tight" href={route('gallery.index')}>View Galleries</InertiaLink>
+                         <InertiaLink className="font-semibold text-md text-gray-700 hover:text-gray-800 leading-tight" href={route('admin.gallery.index')}>View Galleries</InertiaLink>
                     </div>
                </div>
                <DataContainer>
@@ -28,11 +28,11 @@ const Index = () => {
                          {can(auth.user, 'create-user') && (<AddButton caption={'Add Language'} link={'language.create'} linkParams={''} />)}
                     </div> */}
                     <div className="col-span-12 grid grid-cols-6 gap-4">
-                         {can(auth.user, 'create-user') && (<InertiaLink href={route('media.create')} className="border border-gray-300 rounded">
+                         {can(auth.user, 'create-user') && (<InertiaLink href={route('admin.media.create')} className="border border-gray-300 rounded">
                               <Icon name="plus" className={`text-gray-400 hover:text-gray-500 fill-current`} />
                          </InertiaLink>)}
                          {info.medias.data.map(({id, url}) => {
-                              return <InertiaLink key={`med${id}`} href={route('media.show', id)} className="">
+                              return <InertiaLink key={`med${id}`} href={route('admin.media.show', id)} className="">
                                    <img src={url} key={id} className="w-full rounded hover:shadow-lg hover:border hover:border-2 hover:border-purple-500 ease-in-out" />
                               </InertiaLink>
                          })}

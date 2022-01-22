@@ -1,14 +1,21 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 
-export default ({ label, name, className, errors = [], disable, readonly, must, autocomplete, ...props }) => {
+export default ({ label, name, className, errors = [], disable, readonly, must, focus, autocomplete, ...props }) => {
+     const _input = useRef();
+     useEffect(() => {
+          if(focus){
+               _input.current.focus();
+          }
+     }, []);
      return (
           <div className={className}>
                {label && (
                     <label className="block font-medium text-sm text-gray-700" htmlFor={name}>
-                         {label} {must && (<span className="text-red-700">*</span>)}
+                         {label} {(must == true) && (<span className="text-red-700">*</span>)}
                     </label>
                )}
                <input
+                    ref={_input}
                     id={name}
                     name={name}
                     {...props}

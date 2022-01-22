@@ -28,7 +28,7 @@ function EditRole() {
 
      function handleSubmit(e) {
           e.preventDefault();
-          put(route('role.update', info.id));
+          put(route('admin.role.update', info.id));
      }
 
      return (
@@ -47,7 +47,7 @@ function EditRole() {
                               <div className="px-4 py-5 sm:p-6">
                                    <div className="grid grid-cols-3 gap-3">
                                         <div className="col-span-12 text-right">
-                                             <BackButton link={'security.index'} linkParams={''} />
+                                             <BackButton link={'admin.security.index'} linkParams={''} />
                                         </div>
                                         <div className="col-span-6 sm:col-span-4">
                                              <TextInput

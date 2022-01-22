@@ -39,6 +39,7 @@ function Login() {
                               disable={false}
                               readonly={false}
                               must={false}
+                              focus={+true}
                               errors={errors.email}
                               value={data.email}
                               onChange={e => setData('email', e.target.value)}

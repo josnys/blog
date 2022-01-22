@@ -27,7 +27,7 @@ function EditPermission() {
 
      function handleSubmit(e) {
           e.preventDefault();
-          put(route('permission.update', info.id));
+          put(route('admin.permission.update', info.id));
      }
 
      return (
@@ -46,7 +46,7 @@ function EditPermission() {
                               <div className="px-4 py-5 sm:p-6">
                                    <div className="grid grid-cols-3 gap-3">
                                         <div className="col-span-12 text-right">
-                                             <BackButton link={'security.index'} linkParams={''} />
+                                             <BackButton link={'admin.security.index'} linkParams={''} />
                                         </div>
                                         <div className="col-span-6 sm:col-span-4">
                                              <TextInput
