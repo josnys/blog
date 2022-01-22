@@ -37,6 +37,9 @@
         "react-dom": "^16.14.0",
         "react-helmet": "^6.1.0",
         "react-use": "^15.3.8",
+        "workbox-core": "^6.4.2",
+        "workbox-routing": "^6.4.2",
+        "workbox-strategies": "^6.4.2",
         "ziggy-js": "^0.9.4"
     }
 }

@@ -36,7 +36,7 @@ class HandleInertiaRequests extends Middleware
                     return [
                          'name' => config('app.name'),
                          'system' => [
-                              'name' => 'Starter Template',
+                              'name' => 'JS CMS',
                               'version' => 'v1.0'
                          ]
                     ];

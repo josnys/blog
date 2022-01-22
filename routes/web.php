@@ -30,6 +30,7 @@ use App\Http\Controllers\WelcomeController;
 Route::get('/', [WelcomeController::class, 'index']);
 
 Route::get('/img/{path}', [ImageController::class, 'show'])->where('path', '.*')->name('show.image');
+Route::post('lang/{locale}', [WelcomeController::class, 'setLanguage'])->name('set.language');
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], function(){
      // Profile
@@ -106,6 +107,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
      Route::get('/post/create', [PostController::class, 'create'])->middleware('permission:read-user')->name('post.create');
      Route::post('/post/create', [PostController::class, 'store'])->middleware('permission:read-user')->name('post.store');
      Route::get('/post/{post}/view', [PostController::class, 'show'])->middleware('permission:read-user')->name('post.show');
+     Route::post('/post/{post}/publish', [PostController::class, 'publish'])->middleware('permission:read-user')->name('post.publish');
+     Route::post('/post/{post}/archive', [PostController::class, 'archive'])->middleware('permission:read-user')->name('post.archive');
      Route::get('/post/{post}/language/{language}/edit', [PostController::class, 'edit'])->middleware('permission:read-user')->name('post.edit');
      Route::post('/post/{post}/language/{language}/edit', [PostController::class, 'update'])->middleware('permission:read-user')->name('post.update');
      Route::get('/post/{post}/lang/{language}/translate', [PostTranslateController::class, 'getTranslate'])->middleware('permission:read-user')->name('post.translate.create');

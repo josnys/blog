@@ -1,18 +1,24 @@
 import React, { useState } from 'react';
 import Helmet from 'react-helmet';
-import { InertiaLink, usePage } from '@inertiajs/inertia-react';
+import { InertiaLink, usePage, useForm } from '@inertiajs/inertia-react';
 import Layout from '@/Shared/Layout';
 import DataContainer from '@/Shared/DataContainer';
 import DropdownButton from '@/Shared/DropdownButton';
 import { BackButton } from '@/Shared/BackButton';
 import { AddButton } from '@/Shared/AddButton';
+import TextInput from '@/Shared/TextInput';
 import SelectInput from '@/Shared/SelectInput';
+import LoadingButton from '@/Shared/LoadingButton';
 import Icon from '@/Shared/Icon';
 import Pagination from '@/Shared/Pagination';
 import { can } from '@/utils';
 
 const Show = () => {
      const { auth, info } = usePage().props;
+     const { data, setData, post, processing, errors, transform } = useForm({
+          publish: info.publish || '',
+          archive: info.archive || '',
+     });
      const [values, setValues] = useState({
           language: '',
           activeIndex: 0,
@@ -30,6 +36,16 @@ const Show = () => {
                }));
           }
           return;
+     }
+
+     function handlePublish(e) {
+          e.preventDefault();
+          post(route('admin.post.publish', info.id), {preserveState:false});
+     }
+
+     function handleArchive(e) {
+          e.preventDefault();
+          post(route('admin.post.archive', info.id), {preserveState:false});
      }
 
      return (
@@ -95,6 +111,28 @@ const Show = () => {
                                         })}
                                    </ul>
                               </div>)}
+                              <div className="w-full bg-gray-100 rounded p-2 mt-2">
+                                   <TextInput
+                                        className="form-input rounded-md shadow-sm block w-full"
+                                        label="Publish On"
+                                        name="publish"
+                                        type="datetime-local"
+                                        disable={+false}
+                                        readonly={+false}
+                                        must={+true}
+                                        errors={errors.publish}
+                                        value={data.publish}
+                                        onChange={e => setData('publish', e.target.value)}
+                                   />
+                                   <LoadingButton type="button" onClick={handlePublish} className="w-full mt-3 items-center items-center justify-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring-gray disabled:opacity-25 transition ease-in-out duration-150">
+                                        {info.published?'Unschedule':'Schedule'}
+                                   </LoadingButton>
+                              </div>
+                              <div className="w-full bg-gray-100 rounded p-2 mt-2">
+                                   <LoadingButton type="button" onClick={handleArchive} className="w-full items-center items-center justify-center px-4 py-2 bg-yellow-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-yellow-700 active:bg-yellow-900 focus:outline-none focus:border-yellow-900 focus:ring-yellow disabled:opacity-25 transition ease-in-out duration-150">
+                                        {data.archive?'Unarchive':'Archive'}
+                                   </LoadingButton>
+                              </div>
                          </div>
                     </div>
                </DataContainer>

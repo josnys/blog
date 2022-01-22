@@ -10,6 +10,10 @@ InertiaProgress.init({
 
 const app = document.getElementById('app');
 
+if('serviceWorker' in navigator){
+     navigator.serviceWorker.register('/service-worker.js', {scope: '/'});
+}
+
 render(
      <InertiaApp
           initialPage={JSON.parse(app.dataset.page)}

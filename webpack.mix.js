@@ -13,6 +13,8 @@ const path = require('path');
  */
 
 mix.js('resources/js/app.js', 'public/js')
+     .js('resources/js/service-worker.js', 'public/service-worker.js')
+     .copy('resources/js/manifest.json', 'public/manifest.json')
      .react()
      .postCss('resources/css/app.css', 'public/css', [
           require('tailwindcss')
@@ -27,3 +29,7 @@ mix.js('resources/js/app.js', 'public/js')
      })
      .version()
      .sourceMaps();
+
+if(mix.inProduction()){
+     mix.version();
+}
