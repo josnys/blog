@@ -56,7 +56,7 @@ const Show = () => {
 
      function handleSubmit(e) {
           e.preventDefault();
-          post(route('gallery.update', info.id));
+          post(route('admin.gallery.update', info.id));
      }
 
      return (
@@ -86,7 +86,7 @@ const Show = () => {
                               <div className="px-4 py-5 sm:p-6">
                                    <div className="grid grid-cols-6 gap-6">
                                         <div className="col-span-12 text-right">
-                                             <BackButton link={'gallery.index'} linkParams={''} />
+                                             <BackButton link={'admin.gallery.index'} linkParams={''} />
                                         </div>
                                         <div className="col-span-12">
                                              <TextInput

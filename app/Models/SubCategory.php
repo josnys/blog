@@ -23,6 +23,11 @@ class SubCategory extends Model
           return $this->hasMany(SubCategoryTranslate::class);
      }
 
+     public function scopeActive($query)
+     {
+          return $query->where('is_active', true);
+     }
+
      public static function getUrl($name)
      {
           try {

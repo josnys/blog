@@ -37,7 +37,7 @@ const Create = () => {
 
      function handleSubmit(e) {
           e.preventDefault();
-          post(route('user.store'));
+          post(route('admin.user.store'));
      }
 
      return (
@@ -59,7 +59,7 @@ const Create = () => {
                               <div className="px-4 py-5 sm:p-6">
                                    <div className="grid grid-cols-6 gap-6">
                                         <div className="col-span-12 text-right">
-                                             <BackButton link={'user.index'} linkParams={''} />
+                                             <BackButton link={'admin.user.index'} linkParams={''} />
                                         </div>
                                         <div className="col-span-12">
                                              <TextInput

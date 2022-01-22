@@ -37,7 +37,7 @@ export default ({ ...props }) => {
                               <div className="flex items-center px-3">
                                    <div className="font-semibold text-gray-700">{auth.user.name}</div>
                               </div>
-                              <InertiaLink href={route('profile')} className="block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
+                              <InertiaLink href={route('admin.profile')} className="block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
                                    My Profile
                               </InertiaLink>
                               <div className="border-t border-gray-200"></div>

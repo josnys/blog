@@ -18,12 +18,12 @@ const Index = () => {
                     <title>Users</title>
                </Helmet>
                <div className="max-w-7xl mx-auto p-2">
-                    <InertiaLink className="font-semibold text-md text-gray-700 hover:text-gray-800 leading-tight" href={route('home')}>Dashboard</InertiaLink> | <span className="text-md text-gray-700 leading-tight">Users</span>
+                    <InertiaLink className="font-semibold text-md text-gray-700 hover:text-gray-800 leading-tight" href={route('admin.home')}>Dashboard</InertiaLink> | <span className="text-md text-gray-700 leading-tight">Users</span>
                </div>
                <DataContainer>
                     <div className="col-span-12">
-                         {can(auth.user, 'create-user') && (<AddButton caption={'Add User'} link={'user.create'} linkParams={''} />)}
-                         {can(auth.user, 'read-role') && (<InertiaLink href={route('security.index')} className="float-right bg-gray-300 hover:bg-gray-400 mr-2 text-gray-800 text-sm py-1 px-1 rounded inline-flex items-center">
+                         {can(auth.user, 'create-user') && (<AddButton caption={'Add User'} link={'admin.user.create'} linkParams={''} />)}
+                         {can(auth.user, 'read-role') && (<InertiaLink href={route('admin.security.index')} className="float-right bg-gray-300 hover:bg-gray-400 mr-2 text-gray-800 text-sm py-1 px-1 rounded inline-flex items-center">
                               <Icon name={'key'} className={'fill-current w-4 h-4 mr-2'} />
                               Roles & Permissions
                          </InertiaLink>)}
@@ -54,15 +54,15 @@ const Index = () => {
                                         <td className="border px-4 py-2">{roles.join(', ')}</td>
                                         <td className="border px-4 py-2">
                                              <DropdownButton caption="Actions" color="blue">
-                                                  {can(auth.user, 'update-user') && (<InertiaLink href={route('user.edit', id)} className="flex block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
+                                                  {can(auth.user, 'update-user') && (<InertiaLink href={route('admin.user.edit', id)} className="flex block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
                                                        <Icon name={'edit'} className={'fill-current w-5 h-5 mr-2'} />
                                                        Edit
                                                   </InertiaLink>)}
-                                                  {can(auth.user, 'change-user-password') && (<InertiaLink href={route('user.get.resetpassword', id)} className="flex block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
+                                                  {can(auth.user, 'change-user-password') && (<InertiaLink href={route('admin.user.get.resetpassword', id)} className="flex block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
                                                        <Icon name={'key'} className={'fill-current w-5 h-5 mr-2'} />
                                                        Change Password
                                                   </InertiaLink>)}
-                                                  {can(auth.user, 'assign-role') && (<InertiaLink href={route('user.get.role', id)} className="flex block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
+                                                  {can(auth.user, 'assign-role') && (<InertiaLink href={route('admin.user.get.role', id)} className="flex block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
                                                        <Icon name={'cheveron-right'} className={'fill-current w-5 h-5 mr-2'} />
                                                        Assign Role
                                                   </InertiaLink>)}

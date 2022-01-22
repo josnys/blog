@@ -18,13 +18,13 @@ const Index = () => {
                     <title>Galleries</title>
                </Helmet>
                <div className="max-w-7xl mx-auto p-2">
-                    <InertiaLink className="font-semibold text-md text-gray-700 hover:text-gray-800 leading-tight" href={route('home')}>Dashboard</InertiaLink> | <InertiaLink className="font-semibold text-md text-gray-700 hover:text-gray-800 leading-tight" href={route('media.index')}>Medias</InertiaLink> | <span className="text-md text-gray-700 leading-tight">Galleries</span>
+                    <InertiaLink className="font-semibold text-md text-gray-700 hover:text-gray-800 leading-tight" href={route('admin.home')}>Dashboard</InertiaLink> | <InertiaLink className="font-semibold text-md text-gray-700 hover:text-gray-800 leading-tight" href={route('admin.media.index')}>Medias</InertiaLink> | <span className="text-md text-gray-700 leading-tight">Galleries</span>
                </div>
                <DataContainer>
                     <div className="col-span-12">
-                         {can(auth.user, 'create-user') && (<AddButton caption={'Add Gallery'} link={'gallery.create'} linkParams={''} />)}
+                         {can(auth.user, 'create-user') && (<AddButton caption={'Add Gallery'} link={'admin.gallery.create'} linkParams={''} />)}
                          <div className="float-right">
-                              <BackButton link={'media.index'} linkParams={''} />
+                              <BackButton link={'admin.media.index'} linkParams={''} />
                          </div>
                     </div>
                     <table className="table-fixed col-span-12 text-sm">
@@ -48,7 +48,7 @@ const Index = () => {
                                         <td className={`border px-2 py-1 text-center ${status?'text-green-600':'text-red-600'}`}>{status_caption}</td>
                                         <td className="border px-2 py-1">
                                              <DropdownButton caption="Actions" color="blue">
-                                                  {can(auth.user, 'update-user') && (<InertiaLink href={route('gallery.edit', id)} className="flex block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
+                                                  {can(auth.user, 'update-user') && (<InertiaLink href={route('admin.gallery.edit', id)} className="flex block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
                                                        <Icon name={'eye'} className={'fill-current w-5 h-5 mr-2'} />
                                                        View
                                                   </InertiaLink>)}

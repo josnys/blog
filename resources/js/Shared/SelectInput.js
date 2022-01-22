@@ -13,7 +13,7 @@ export default ({
           <div className={className}>
                {label && (
                     <label className="block font-medium text-sm text-gray-700" htmlFor={name}>
-                         {label} {must && (<span className="text-red-700">*</span>)}
+                         {label} {(must == 1) && (<span className="text-red-700">*</span>)}
                     </label>
                )}
                <select

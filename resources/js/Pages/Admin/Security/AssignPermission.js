@@ -60,7 +60,7 @@ function AssignPermission() {
 
      function handleSubmit(e) {
           e.preventDefault();
-          post(route('role.post.assign', info.role.id));
+          post(route('admin.role.post.assign', info.role.id));
      }
 
      return (
@@ -83,7 +83,7 @@ function AssignPermission() {
                               <div className="px-4 py-5 sm:p-6">
                                    <div className="grid grid-cols-3">
                                         <div className="col-span-12 text-right">
-                                             <BackButton link={'security.index'} linkParams={''} />
+                                             <BackButton link={'admin.security.index'} linkParams={''} />
                                         </div>
                                         <div className="sm:col-span-4">
                                              <div className="flex mt-4">

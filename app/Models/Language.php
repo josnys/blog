@@ -17,4 +17,9 @@ class Language extends Model
      {
           return ($this->flag && Storage::disk('local')->exists('language/'.$this->flag)) ? route('show.image', 'language/'.$this->flag) : null;
      }
+
+     public function scopeActive($query)
+     {
+          return $query->where('is_active', true);
+     }
 }

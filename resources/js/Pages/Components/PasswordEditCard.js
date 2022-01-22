@@ -18,7 +18,7 @@ const PasswordEditCard = () => {
 
      function handleSubmit(e) {
           e.preventDefault();
-          post(route('profile.password', user.id));
+          post(route('admin.profile.password', user.id));
      }
      return (
           <React.Fragment key="uprofile">

@@ -57,7 +57,7 @@ class LanguageController extends Controller
                     'flag' => $mediaName,
                     'is_active' => $input['status']
                ]);
-               return redirect()->route('language.index')->with('success', 'Language created successfully.');
+               return redirect()->route('admin.language.index')->with('success', 'Language created successfully.');
           } catch (\Exception $e) {
                Log::error('LanguageController store', ['data' => $e]);
                return redirect()->back()->with('error', $this->serverError());
@@ -97,7 +97,7 @@ class LanguageController extends Controller
                $language->is_active = $input['status'];
                $language->update();
 
-               return redirect()->route('language.index')->with('success', 'Language updated successfully.');
+               return redirect()->route('admin.language.index')->with('success', 'Language updated successfully.');
           } catch (\Exception $e) {
                Log::error('LanguageController update', ['data' => $e]);
                return redirect()->back()->with('error', $this->serverError());

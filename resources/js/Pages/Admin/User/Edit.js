@@ -36,7 +36,7 @@ const Edit = () => {
 
      function handleSubmit(e) {
           e.preventDefault();
-          put(route('user.update', info.id));
+          put(route('admin.user.update', info.id));
      }
 
      return (
@@ -58,7 +58,7 @@ const Edit = () => {
                               <div className="px-4 py-5 sm:p-6">
                                    <div className="grid grid-cols-6 gap-6">
                                         <div className="col-span-12 text-right">
-                                             <BackButton link={'user.index'} linkParams={''} />
+                                             <BackButton link={'admin.user.index'} linkParams={''} />
                                         </div>
                                         <div className="col-span-12">
                                              <TextInput

@@ -18,18 +18,18 @@ const Index = () => {
                     <title>Roles & Permission</title>
                </Helmet>
                <div className="max-w-7xl mx-auto p-2">
-                    <InertiaLink className="font-semibold text-md text-gray-600 hover:text-gray-700 leading-tight" href={route('home')}>Dashboard</InertiaLink> |
-                    <InertiaLink className="font-semibold text-md text-gray-600 hover:text-gray-700 leading-tight" href={route('user.index')}> Users</InertiaLink> |
+                    <InertiaLink className="font-semibold text-md text-gray-600 hover:text-gray-700 leading-tight" href={route('admin.home')}>Dashboard</InertiaLink> |
+                    <InertiaLink className="font-semibold text-md text-gray-600 hover:text-gray-700 leading-tight" href={route('admin.user.index')}> Users</InertiaLink> |
                     <span className="text-md text-gray-600 leading-tight"> Roles & Permissions</span>
                </div>
                <DataContainer>
                     <div className="col-span-12">
-                         {can(auth.user, 'create-role') && <AddButton caption={'Add Role'} link={'role.create'} linkParams={''} />}
+                         {can(auth.user, 'create-role') && <AddButton caption={'Add Role'} link={'admin.role.create'} linkParams={''} />}
                          <div className="float-right">
-                              <BackButton link={'user.index'} linkParams={''} />
+                              <BackButton link={'admin.user.index'} linkParams={''} />
                          </div>
                          {(auth.user.id == 1) && <div className="float-right">
-                              {can(auth.user, 'create-role') && <AddButton caption={'Permissions'} link={'permission.create'} linkParams={''} />}
+                              {can(auth.user, 'create-role') && <AddButton caption={'Permissions'} link={'admin.permission.create'} linkParams={''} />}
                          </div>}
                     </div>
                     <table className="table-fixed col-span-12 text-sm">
@@ -49,10 +49,10 @@ const Index = () => {
                                         <td className="border px-4 py-2">{description}</td>
                                         <td className="border px-4 py-2">
                                              <DropdownButton caption="Actions" color="blue">
-                                                  {can(auth.user, 'update-role')?<InertiaLink href={route('role.edit', id)} className="flex block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
+                                                  {can(auth.user, 'update-role')?<InertiaLink href={route('admin.role.edit', id)} className="flex block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
                                                        <Icon name={'edit'} className={'fill-current w-5 h-5 mr-2'} /> Edit
                                                   </InertiaLink>:null}
-                                                  {can(auth.user, 'assign-permission')?<InertiaLink href={route('role.get.assign', id)} className="flex block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
+                                                  {can(auth.user, 'assign-permission')?<InertiaLink href={route('admin.role.get.assign', id)} className="flex block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-gray-700">
                                                        <Icon name={'cheveron-right'} className={'fill-current w-5 h-5 mr-2'} /> Assign Permission
                                                   </InertiaLink>:null}
                                              </DropdownButton>

@@ -68,7 +68,7 @@ class CategoryController extends Controller
                $text->name = $input['name'];
                $text->save();
 
-               return redirect()->route('category.index')->with('success', 'Category saved successfully.');
+               return redirect()->route('admin.category.index')->with('success', 'Category saved successfully.');
           } catch (\Exception $e) {
                Log::error('CategoryController store', ['data' => $e]);
                return redirect()->back()->with('error', $this->serverError());
@@ -129,7 +129,7 @@ class CategoryController extends Controller
                $text->language_id = $input['lang'];
                $text->name = $input['name'];
                $text->save();
-               return redirect()->route('category.show', $category->id)->with('success', 'Category Translation successfully saved.');
+               return redirect()->route('admin.category.show', $category->id)->with('success', 'Category Translation successfully saved.');
           } catch (\Exception $e) {
                Log::error('CategoryController createText', ['data' => $e]);
                return redirect()->back()->with('error', $this->serverError());
@@ -147,7 +147,7 @@ class CategoryController extends Controller
 
                $text->name = $input['name'];
                $text->update();
-               return redirect()->route('category.show', $category->id)->with('success', 'Category Translation successfully updated.');
+               return redirect()->route('admin.category.show', $category->id)->with('success', 'Category Translation successfully updated.');
           } catch (\Exception $e) {
                Log::error('CategoryController editText', ['data' => $e]);
                return redirect()->back()->with('error', $this->serverError());

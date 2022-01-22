@@ -53,9 +53,9 @@ const Show = () => {
      function handleSubmit(e) {
           e.preventDefault();
           if(data.edit){
-               post(route('category.text.update', [info.id, data.id]), {preserveState:false});
+               post(route('admin.category.text.update', [info.id, data.id]), {preserveState:false});
           }else{
-               post(route('category.text.store', info.id));
+               post(route('admin.category.text.store', info.id));
           }
      }
 
@@ -73,10 +73,10 @@ const Show = () => {
                                    <p className="text-gray-500">Show In Menu: <span className="float-right font-semibold">{info.menu_caption}</span></p>
                                    <p className="text-gray-500">Status: <span className="float-right font-semibold">{info.status_caption}</span></p>
                                    <div className="mt-4 border border-t"></div>
-                                   <h3 className="text-md font-medium text-gray-800">Sub-Categories <InertiaLink href={route('subcategory.create', info.id)} className="float-right text-sm underline text-gray-600 hover:text-blue-600">Add Sub-Categories</InertiaLink></h3>
+                                   <h3 className="text-md font-medium text-gray-800">Sub-Categories <InertiaLink href={route('admin.subcategory.create', info.id)} className="float-right text-sm underline text-gray-600 hover:text-blue-600">Add Sub-Categories</InertiaLink></h3>
                                    {(info.subcategories.length > 0) && (<ul  className="list-inside bg-gray-100 rounded p-2">
                                         {info.subcategories.map(({id, name}, i) => {
-                                             return <li className="mt-2" key={`sub${i}`}><InertiaLink className="text-sm text-gray-600 hover:text-blue-700" href={route('subcategory.show', [info.id, id])}>{name} <span className="float-right underline">View</span></InertiaLink></li>
+                                             return <li className="mt-2" key={`sub${i}`}><InertiaLink className="text-sm text-gray-600 hover:text-blue-700" href={route('admin.subcategory.show', [info.id, id])}>{name} <span className="float-right underline">View</span></InertiaLink></li>
                                         })}
                                    </ul>)}
                               </div>
@@ -85,7 +85,7 @@ const Show = () => {
                               <div className="px-4 py-5 sm:p-6">
                                    <div className="grid grid-cols-6 gap-6">
                                         <div className="col-span-12 text-right">
-                                             <BackButton link={'category.index'} linkParams={''} />
+                                             <BackButton link={'admin.category.index'} linkParams={''} />
                                         </div>
                                         <div className="col-span-12">
                                              <SelectInput

@@ -22,7 +22,7 @@ const Create = () => {
 
      function handleSubmit(e) {
           e.preventDefault();
-          post(route('subcategory.store', info.category.id));
+          post(route('admin.subcategory.store', info.category.id));
      }
 
      return (
@@ -44,7 +44,7 @@ const Create = () => {
                               <div className="px-4 py-5 sm:p-6">
                                    <div className="grid grid-cols-6 gap-6">
                                         <div className="col-span-12 text-right">
-                                             <BackButton link={'category.show'} linkParams={info.category.id} />
+                                             <BackButton link={'admin.category.show'} linkParams={info.category.id} />
                                         </div>
                                         <div className="col-span-12">
                                              <SelectInput

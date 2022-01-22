@@ -23,6 +23,11 @@ class Gallery extends Model
           return $this->hasMany(GalleryDetail::class, 'gallery_id', 'id');
      }
 
+     public function scopeActive($query)
+     {
+          return $query->where('is_active', true);
+     }
+
      public static function getUrl($name)
      {
           try {

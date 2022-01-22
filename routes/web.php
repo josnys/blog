@@ -12,6 +12,8 @@ use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\GalleryController;
+use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\PostTranslateController;
 use App\Http\Controllers\WelcomeController;
 
 /*
@@ -29,7 +31,7 @@ Route::get('/', [WelcomeController::class, 'index']);
 
 Route::get('/img/{path}', [ImageController::class, 'show'])->where('path', '.*')->name('show.image');
 
-Route::group(['middleware' => ['auth']], function(){
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], function(){
      // Profile
      Route::get('/home', [HomeController::class, 'index'])->name('home');
      Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
@@ -98,4 +100,14 @@ Route::group(['middleware' => ['auth']], function(){
      Route::get('/category/{category}/sub/{subcategory}/show', [SubCategoryController::class, 'show'])->middleware('permission:read-user')->name('subcategory.show');
      Route::post('/category/{category}/sub/{subcategory}/text/create', [SubCategoryController::class, 'createText'])->middleware('permission:read-user')->name('subcategory.text.store');
      Route::post('/category/{category}/sub/{subcategory}/text/{text}/edit', [SubCategoryController::class, 'editText'])->middleware('permission:read-user')->name('subcategory.text.update');
+
+     // Posts
+     Route::get('/post', [PostController::class, 'index'])->middleware('permission:read-user')->name('post.index');
+     Route::get('/post/create', [PostController::class, 'create'])->middleware('permission:read-user')->name('post.create');
+     Route::post('/post/create', [PostController::class, 'store'])->middleware('permission:read-user')->name('post.store');
+     Route::get('/post/{post}/view', [PostController::class, 'show'])->middleware('permission:read-user')->name('post.show');
+     Route::get('/post/{post}/language/{language}/edit', [PostController::class, 'edit'])->middleware('permission:read-user')->name('post.edit');
+     Route::post('/post/{post}/language/{language}/edit', [PostController::class, 'update'])->middleware('permission:read-user')->name('post.update');
+     Route::get('/post/{post}/lang/{language}/translate', [PostTranslateController::class, 'getTranslate'])->middleware('permission:read-user')->name('post.translate.create');
+     Route::post('/post/{post}/lang/{language}/translate', [PostTranslateController::class, 'postTranslate'])->middleware('permission:read-user')->name('post.translate.store');
 });
