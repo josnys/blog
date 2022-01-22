@@ -53,7 +53,7 @@ const Show = () => {
           if(data.edit){
                post(route('admin.media.info.update', [info.id, data.id]), {preserveState:false});
           }else{
-               post(route('admin.media.info.store', info.id));
+               post(route('admin.media.info.store', info.id), {preserveState:false});
           }
      }
 

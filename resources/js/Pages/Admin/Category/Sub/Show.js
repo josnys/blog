@@ -56,7 +56,7 @@ const Show = () => {
           if(data.edit){
                post(route('admin.subcategory.text.update', [info.category.id, info.id, data.id]), {preserveState:false});
           }else{
-               post(route('admin.subcategory.text.store', info.category.id));
+               post(route('admin.subcategory.text.store', [info.category.id, info.id]), {preserveState:false});
           }
      }
 

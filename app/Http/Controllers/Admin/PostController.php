@@ -167,6 +167,8 @@ class PostController extends Controller
                     'status_caption' => $post->is_active ? 'Yes' : 'No',
                     'published' => $post->published_at ? true : false,
                     'published_caption' => $post->published_at ? 'Yes' : 'No',
+                    'publish' => $post->published_at ? explode(' ', $post->published_at)[0].'T'.explode(' ', $post->published_at)[1] : null,
+                    'archive' => $post->archived_at ? explode(' ', $post->archived_at)[0].'T'.explode(' ', $post->archived_at)[1] : null,
                     'details' => $details,
                     'language_index' => $language_indexes,
                     'languages_create' => Language::active()->whereNotIn('id', $selectedLanguage)->get()->transform(function($language){
@@ -234,7 +236,8 @@ class PostController extends Controller
                     'show_home' => $post->show_in_home,
                     'show_menu' => $post->show_in_menu,
                     'status' => $post->is_active,
-                    'publish' => $post->published_at ? true : false,
+                    'publish' => $post->published_at ? $post->published_at->toDateTimeString() : null,
+                    'archive' => $post->archived_at ? $post->archived_at->toDateTimeString() : null,
                     'language' => [
                          'id' => $language->id,
                          'name' => $language->name
@@ -297,6 +300,37 @@ class PostController extends Controller
                return redirect()->route('admin.post.show', $post->id)->with('success', 'Post updated successfully.');
           } catch (\Exception $e) {
                Log::error('PostController update', ['data' => $e]);
+               return redirect()->back()->with('error', $this->serverError());
+          }
+     }
+
+     public function publish(Request $request, Post $post)
+     {
+          try {
+               if(!$post->is_active){
+                    return redirect()->back()->with('warning', 'Post can not be schedule since it is not active.');
+               }
+               $post->published_at = ($request->get('publish')) ? Carbon::create($request->get('publish')) : null;
+               $post->update();
+               return redirect()->route('admin.post.show', $post->id)->with('success', 'Post publishing shedule successfully.');
+          } catch (\Exception $e) {
+               Log::error('PostController publish', ['data' => $e]);
+               return redirect()->back()->with('error', $this->serverError());
+          }
+     }
+
+     public function archive(Request $request, Post $post)
+     {
+          try {
+               if(!$post->is_active){
+                    return redirect()->back()->with('warning', 'Post can not be archived since it is not active yet.');
+               }
+
+               $post->archived_at = (!$request->get('archive')) ? Carbon::now() : null;
+               $post->update();
+               return redirect()->route('admin.post.show', $post->id)->with('success', 'Post archived successfully.');
+          } catch (\Exception $e) {
+               Log::error('PostController archive', ['data' => $e]);
                return redirect()->back()->with('error', $this->serverError());
           }
      }

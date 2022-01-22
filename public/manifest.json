@@ -1,0 +1,16 @@
+{
+     "name": "JS CMS",
+     "short_name": "jscms",
+     "theme_color": "#67e8f9",
+     "background_color": "#0f172a",
+     "display": "minimal-ui",
+     "orientation": "portrait",
+     "scope": "/",
+     "start_url": "/",
+     "icons": [
+          {
+               "src": "/img/IMG_8702.jpeg",
+               "sizes": "48x48"
+          }
+     ]
+}
