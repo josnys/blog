@@ -13,6 +13,7 @@ export default ({ className }) => {
                {can(auth.user, 'read-user')?<MainMenuItem text="Medias" link="admin.media.index" icon="camera" />:null}
                {can(auth.user, 'read-user')?<MainMenuItem text="Categories" link="admin.category.index" icon="category" />:null}
                {can(auth.user, 'read-user')?<MainMenuItem text="Posts" link="admin.post.index" icon="book" />:null}
+               {can(auth.user, 'read-user')?<MainMenuItem text="Settings" link="admin.setting.create" icon="cog" />:null}
           </div>
      );
 };

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\SecurityController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -113,4 +114,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
      Route::post('/post/{post}/language/{language}/edit', [PostController::class, 'update'])->middleware('permission:read-user')->name('post.update');
      Route::get('/post/{post}/lang/{language}/translate', [PostTranslateController::class, 'getTranslate'])->middleware('permission:read-user')->name('post.translate.create');
      Route::post('/post/{post}/lang/{language}/translate', [PostTranslateController::class, 'postTranslate'])->middleware('permission:read-user')->name('post.translate.store');
+
+     // Settings
+     Route::get('/setting', [SettingController::class, 'create'])->middleware('permission:read-user')->name('setting.create');
+     Route::post('/setting', [SettingController::class, 'store'])->middleware('permission:read-user')->name('setting.store');
 });

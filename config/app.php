@@ -176,7 +176,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,
 
-        Intervention\Image\ImageServiceProvider::class
+        Intervention\Image\ImageServiceProvider::class,
+        NotificationChannels\WebPush\WebPushServiceProvider::class,
 
     ],
 

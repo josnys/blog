@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 use App\Http\Requests\PostRequest;
 use App\Models\Category;
 use App\Models\Language;
@@ -13,6 +14,8 @@ use App\Models\Gallery;
 use App\Models\Media;
 use Inertia\Inertia;
 use Carbon\Carbon;
+use App\Notifications\PublishPostWebNotification;
+use App\Notifications\PublishPostTwitterNotification;
 use Illuminate\Support\Facades\Log;
 
 class PostController extends Controller
@@ -154,6 +157,8 @@ class PostController extends Controller
                          'body' => $detail->content
                     ];
                })->toArray();
+
+               // $post->notify(new PublishPostTwitterNotification());
 
                return Inertia::render('Admin/Post/Show', ['info' => [
                     'id' => $post->id,

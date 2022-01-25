@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Notifications\Notifiable;
+use NotificationChannels\WebPush\HasPushSubscriptions;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
@@ -10,7 +12,7 @@ use Illuminate\Support\Str;
 
 class Post extends Model
 {
-     use HasFactory;
+     use HasFactory, Notifiable, HasPushSubscriptions;
 
      protected $fillable = ['category_id', 'sub_category_id', 'media_id', 'slug', 'user_id', 'show_in_home', 'show_in_menu', 'is_active', 'published_at', 'archived_at'];
 
