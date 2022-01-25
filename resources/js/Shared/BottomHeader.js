@@ -10,7 +10,7 @@ export default ({ ...props }) => {
      return (
           <div className="bg-white border-b w-full p-4 md:py-0 md:px-12 text-sm d:text-md flex justify-between items-center">
                <div className="mt-1 mr-4">
-                    <span className="text-md text-gray-600 leading-tight">{app.system.name}</span><span className="font-semibold text-md text-gray-700 leading-tight"> | { props.children }</span> <br />
+                    <span className="text-md text-gray-600 leading-tight">{app.name}</span><span className="font-semibold text-md text-gray-700 leading-tight"> | { props.children }</span> <br />
                     <div className="flex justify-content-center items-center text-xs text-gray-500">
                          {app.system.version}
                          <span className="flex">

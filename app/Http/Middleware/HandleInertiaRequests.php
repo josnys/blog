@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Models\User;
+use App\Models\Setting;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
@@ -33,8 +34,9 @@ class HandleInertiaRequests extends Middleware
      {
           return array_merge(parent::share($request), [
                'app' => function(){
+                    $setting = Setting::find(1);
                     return [
-                         'name' => config('app.name'),
+                         'name' => $setting ? $setting->name : config('app.name'),
                          'system' => [
                               'name' => 'JS CMS',
                               'version' => 'v1.0'

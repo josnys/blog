@@ -33,6 +33,11 @@ class Media extends Model
           return ($this->name && Storage::disk('local')->exists('medias/images/'.$this->name)) ? route('show.image', 'medias/images/'.$this->name) : null;
      }
 
+     public function getFullPathAttribute()
+     {
+          return ($this->name && Storage::disk('local')->exists('medias/images/'.$this->name)) ? storage_path('medias/images/'.$this->name) : null;
+     }
+
      public static function getUploaded($path)
      {
           return Storage::get($path);
