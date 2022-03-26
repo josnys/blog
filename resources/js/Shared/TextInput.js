@@ -10,7 +10,7 @@ export default ({ label, name, className, errors = [], disable, readonly, must, 
      return (
           <div className={className}>
                {label && (
-                    <label className="block font-medium text-sm text-gray-700" htmlFor={name}>
+                    <label className="block font-medium text-sm text-gray-600" htmlFor={name}>
                          {label} {(must == true) && (<span className="text-red-700">*</span>)}
                     </label>
                )}
@@ -19,7 +19,7 @@ export default ({ label, name, className, errors = [], disable, readonly, must, 
                     id={name}
                     name={name}
                     {...props}
-                    className={`shadow-none appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow ${errors.length ? 'border border-red-500' : ''}`}
+                    className={`shadow-none appearance-none border rounded w-full py-2 px-2 text-gray-500 leading-tight focus:outline-none focus:border-gray-300 ${errors.length ? 'border border-red-500' : ''}`}
                     disabled={disable}
                     readOnly={readonly}
                     autoComplete={autocomplete?'on':'off'}
