@@ -22,7 +22,12 @@ class HomeController extends Controller
      public function __construct()
      {
           $this->userSex = [['code' => 'Man', 'name' => 'Man'], ['code' => 'Woman', 'name' => 'Woman']];
-          $this->identityType = [['code' => 'SSN', 'name' => 'SSN'], ['code' => 'CIN', 'name' => 'CIN'], ['code' => 'Passport', 'name' => 'Passport'], ['code' => 'Driver License', 'name' => 'Driver License']];
+          $this->identityType = [
+               ['code' => 'SSN', 'name' => 'SSN'],
+               ['code' => 'CIN', 'name' => 'CIN'],
+               ['code' => 'Passport', 'name' => 'Passport'],
+               ['code' => 'Driver License', 'name' => 'Driver License']
+          ];
      }
 
      public function index()

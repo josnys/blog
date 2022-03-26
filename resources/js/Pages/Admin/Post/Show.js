@@ -20,7 +20,7 @@ const Show = () => {
           archive: info.archive || '',
      });
      const [values, setValues] = useState({
-          language: '',
+          language: info.language_index[0].id || '',
           activeIndex: 0,
      });
 
@@ -67,7 +67,7 @@ const Show = () => {
                          <div className="w-2/3 p-2">
                               <h1 className="text-lg text-gray-700 font-medium">{info.details[values.activeIndex]?.title}</h1>
                               <div className="text-sm text-gray-500">{info.category && (<span>{info.category} / </span>)}{info.subcategory && (<span>{info.subcategory}</span>)}</div>
-                              <div className="text-sm text-gray-600 italic">{`${info.details[values.activeIndex]?.language} version`}</div>
+                              <div className="text-sm text-gray-600 italic">{info.details[values.activeIndex]?.language} version</div>
                               {info.cover && (<img src={info.cover} className="w-full" />)}
                               <article className="mt-4 prose prose-slate prose-h1:text-blue-700 text-justify italic text-gray-500" dangerouslySetInnerHTML={{ __html: info.details[values.activeIndex]?.intro }}></article>
                               <article className="mt-4 prose prose-slate prose-h1:text-blue-700 text-justify" dangerouslySetInnerHTML={{ __html: info.details[values.activeIndex]?.body }}></article>
@@ -80,7 +80,7 @@ const Show = () => {
                                    name="language"
                                    disable={+false}
                                    readOnly={+false}
-                                   must={+false}
+                                   must={false}
                                    focus={+false}
                                    errors={[]}
                                    value={values.language}

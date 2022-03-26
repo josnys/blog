@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { InertiaLink, usePage, useForm } from '@inertiajs/inertia-react';
 import Helmet from 'react-helmet';
-import AuthCard from '../../Shared/AuthCard';
-import TextInput from '../../Shared/TextInput';
-import LoadingButton from '../../Shared/LoadingButton';
-import Logo from '../../Shared/Logo';
-import FlashMessages from '../../Shared/FlashMessages';
+import AuthCard from '@/Shared/AuthCard';
+import TextInput from '@/Shared/TextInput';
+import LoadingButton from '@/Shared/LoadingButton';
+import Logo from '@/Shared/Logo';
+import FlashMessages from '@/Shared/FlashMessages';
 
 function Login() {
      const { app } = usePage().props;
