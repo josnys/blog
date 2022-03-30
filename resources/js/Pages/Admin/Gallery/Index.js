@@ -57,7 +57,7 @@ const Index = () => {
                                    </tr>
                               })}
                               {!info.galleries.data.length && (<tr>
-                                   <td colSpan="5" className="p-4 bg-blue-100 text-blue-500 text-center">No data found.</td>
+                                   <td colSpan="6" className="p-4 bg-blue-100 text-blue-500 text-center">No data found.</td>
                               </tr>)}
                          </tbody>
                     </table>

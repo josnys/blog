@@ -185,6 +185,7 @@ const Edit = () => {
                                                                  ...data,
                                                                  intro: e.editor.getData(),
                                                             }));
+                                                            setData('intro', e.editor.getData());
                                                        }}
                                                   />
                                              </div>
@@ -206,6 +207,7 @@ const Edit = () => {
                                                                  ...data,
                                                                  body: e.editor.getData(),
                                                             }));
+                                                            setData('body', e.editor.getData());
                                                        }}
                                                   />
                                              </div>

@@ -4,6 +4,7 @@ import { InertiaLink, usePage, useForm } from '@inertiajs/inertia-react';
 import Layout from '@/Shared/Layout';
 import TextInput from '@/Shared/TextInput';
 import FileInput from '@/Shared/FileInput';
+import { CKEditor } from 'ckeditor4-react';
 import ProfileCard from '@/Shared/ProfileCard';
 import DataCard from '@/Shared/DataCard';
 import { BackButton } from '@/Shared/BackButton';
@@ -12,15 +13,20 @@ import Icon from '@/Shared/Icon';
 
 const Create = () => {
      const { auth, info } = usePage().props;
-     const { data, setData, post, processing, errors } = useForm({
+     const { data, setData, post, processing, errors, transform } = useForm({
           name: '',
           slogan: '',
           logo: null,
+          description: '',
           selectedLogo: '',
           twitter: '',
           facebook: '',
           instagram: '',
           whatsapp: '',
+     });
+
+     const [values, setValues] = useState({
+          description: '',
      });
 
      function handleFileChange(file, path) {
@@ -33,6 +39,10 @@ const Create = () => {
 
      function handleSubmit(e) {
           e.preventDefault();
+          transform((data) => ({
+               ...data,
+               description: values.description,
+          }));
           post(route('admin.setting.store'));
      }
 
@@ -94,6 +104,28 @@ const Create = () => {
                                                   value={data.slogan}
                                                   onChange={e => setData('slogan', e.target.value)}
                                              />
+                                             <div className="form-input rounded-md shadow-sm mt-4 block w-full">
+                                                  <label className="block font-medium text-sm text-gray-700" htmlFor="description">Description</label>
+                                                  <CKEditor
+                                                       initData={values.description}
+                                                       name="description"
+                                                       config={{toolbar: [
+                                                            ['Cut', 'Copy', 'Paste', 'Undo', 'Redo'],
+                                                            ['Bold', 'Italic', 'Strike'],
+                                                            ['NumberedList', 'BulletedList', 'Outdent', 'Indent', 'Blockquote', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+                                                            ['Link','Anchor'],
+                                                            ['Image','Table'],
+                                                            ['Styles','Format', 'Font', 'FontSize']
+                                                       ]}}
+                                                       onChange={(e) => {
+                                                            setValues(values => ({
+                                                                 ...values,
+                                                                 description: e.editor.getData(),
+                                                            }));
+                                                            setData('description', e.editor.getData());
+                                                       }}
+                                                  />
+                                             </div>
                                              <TextInput
                                                   className="form-input rounded-md shadow-sm mt-4 block w-full"
                                                   label="Twitter Handle"
