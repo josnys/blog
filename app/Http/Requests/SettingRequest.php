@@ -27,6 +27,7 @@ class SettingRequest extends FormRequest
                'name' => ['required', 'string', 'max:80'],
                'slogan' => ['nullable', 'sometimes', 'string'],
                'logo' => ['nullable', 'sometimes', 'image', 'max:2048', 'mimes:jpg,jpeg,png,gif,svg'],
+               'description' => ['nullable', 'sometimes', 'string'],
                'twitter' => ['nullable', 'sometimes', 'string'],
                'facebook' => ['nullable', 'sometimes', 'string'],
                'instagram' => ['nullable', 'sometimes', 'string'],

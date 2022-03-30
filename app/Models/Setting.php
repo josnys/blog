@@ -10,7 +10,7 @@ class Setting extends Model
 {
      use HasFactory;
 
-     protected $fillable = ['name', 'slogan', 'logo', 'twitter_handle',  'facebook_handle', 'instagram_handle', 'whatsapp_handle'];
+     protected $fillable = ['name', 'slogan', 'logo', 'description', 'twitter_handle',  'facebook_handle', 'instagram_handle', 'whatsapp_handle'];
 
      public function getLogoUrlAttribute()
      {

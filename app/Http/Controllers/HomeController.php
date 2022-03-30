@@ -11,6 +11,8 @@ use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\PasswordRequest;
 use App\Models\User;
 use App\Models\Person;
+use App\Models\Setting;
+use App\Models\Language;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Log;
 
@@ -32,6 +34,16 @@ class HomeController extends Controller
 
      public function index()
      {
+          $setting = Setting::find(1);
+          if(!$setting){
+               return redirect()->route('admin.setting.create')->with('warning', 'Please set your website details up before you continue.');
+          }
+
+          $language = Language::find(1);
+          if(!$language){
+               return redirect()->route('admin.language.create')->with('warning', 'Please set one language before you continue.');
+          }
+
           return Inertia::render('Dashboard/Home');
      }
 
