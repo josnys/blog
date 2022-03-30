@@ -24,6 +24,7 @@ class SettingController extends Controller
                     'name' => $setting->name,
                     'slogan' => $setting->slogan,
                     'logoUrl' => $setting->logoUrl,
+                    'description' => $setting->description,
                     'twitter' => $setting->twitter_handle,
                     'facebook' => $setting->facebook_handle,
                     'instagram' => $setting->instagram_handle,
@@ -51,6 +52,7 @@ class SettingController extends Controller
                $input = $request->validated();
                $setting->name = $input['name'];
                $setting->slogan = $input['slogan'];
+               $setting->description = $input['description'];
                $setting->twitter_handle = $input['twitter'];
                $setting->facebook_handle = $input['facebook'];
                $setting->instagram_handle = $input['instagram'];

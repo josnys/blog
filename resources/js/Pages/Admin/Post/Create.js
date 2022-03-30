@@ -207,6 +207,7 @@ const Create = () => {
                                                                  ...values,
                                                                  intro: e.editor.getData(),
                                                             }));
+                                                            setData('intro', e.editor.getData());
                                                        }}
                                                   />
                                              </div>
@@ -228,6 +229,7 @@ const Create = () => {
                                                                  ...values,
                                                                  body: e.editor.getData(),
                                                             }));
+                                                            setData('body', e.editor.getData());
                                                        }}
                                                   />
                                              </div>
