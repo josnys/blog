@@ -237,12 +237,12 @@ class PostController extends Controller
                     'subcategory' => $post->sub_category_id,
                     'subs' => $subs,
                     'cover' => $post->media_id,
-                    'selectedCover' => $post->cover->thumbUrl,
+                    'selectedCover' => $post->media_id ? $post->cover->thumbUrl : null,
                     'show_home' => $post->show_in_home,
                     'show_menu' => $post->show_in_menu,
                     'status' => $post->is_active,
-                    'publish' => $post->published_at ? $post->published_at->toDateTimeString() : null,
-                    'archive' => $post->archived_at ? $post->archived_at->toDateTimeString() : null,
+                    'publish' => $post->published_at ? true : false,
+                    'archive' => $post->archived_at ? true : false,
                     'language' => [
                          'id' => $language->id,
                          'name' => $language->name

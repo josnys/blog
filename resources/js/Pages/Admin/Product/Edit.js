@@ -21,13 +21,13 @@ const Edit = () => {
           cover: info.cover || '',
           selectedCover: info.selectedCover || '',
           subs: info.subs || [],
-          title: info.detail.title || '',
-          intro: info.detail.intro || '',
-          body: info.detail.body || '',
-          gallery: info.detail.gallery || '',
-          status: info.status || true,
-          show_home: info.show_home || false,
-          show_menu: info.show_menu || false,
+          name: info.detail.name || '',
+          short_des: info.detail.short_des || '',
+          description: info.detail.description || '',
+          currency: info.currency,
+          price: info.price,
+          gallery: info.gallery || '',
+          active: info.status || true,
           publish: info.publish || false,
      });
 
@@ -78,23 +78,23 @@ const Edit = () => {
 
      function handleSubmit(e) {
           e.preventDefault();
-          post(route('admin.post.update', [info.id, info.language.id]));
+          post(route('admin.product.update', [info.id, info.language.id]));
      }
 
      return (
           <React.Fragment key="uprofile">
                <Helmet>
-                    <title>Update Post</title>
+                    <title>Update Product</title>
                </Helmet>
                <form onSubmit={handleSubmit}>
                     <ProfileCard>
                          <div className="md:col-span-1">
                               <div className="px-4 sm:px-0">
-                                   <h3 className="text-lg font-medium text-gray-900">Update Post</h3>
+                                   <h3 className="text-lg font-medium text-gray-900">Update Product</h3>
                                    <p className="mt-1 text-sm text-gray-600">
-                                        Update post in {}.
+                                        Update product in {info.language.name}.
                                    </p>
-                                   <h4 className="mt-4 text-md text-gray-600">Selected Cover for post</h4>
+                                   <h4 className="mt-4 text-md text-gray-600">Selected main image for product</h4>
                                    {data.selectedCover && (<img className="w-full" onClick={handleRemove} src={data.selectedCover} />)}
                                    {(info.medias.length > 0) && (<div className="col-span-12 border-t border-gray-300 mt-4 pt-4">
                                         <div className="w-full grid grid-cols-3 gap-3">
@@ -114,7 +114,7 @@ const Edit = () => {
                               <div className="px-4 py-5 sm:p-6">
                                    <div className="grid grid-cols-6 gap-6">
                                         <div className="col-span-12 text-right">
-                                             <BackButton link={'admin.post.index'} linkParams={''} />
+                                             <BackButton link={'admin.post.index'} linkParams={null} />
                                         </div>
                                         <div className="col-span-12">
                                              <SelectInput
@@ -136,7 +136,7 @@ const Edit = () => {
                                              </SelectInput>
                                              <SelectInput
                                                   className={`flex-shrink w-full inline-block relative mt-4 mr-2 ${data.edit?'hidden':''}`}
-                                                  label="Sub-Category"
+                                                  label="Subcategory"
                                                   name="subcategory"
                                                   disable={false}
                                                   readOnly={false}
@@ -153,20 +153,20 @@ const Edit = () => {
                                              </SelectInput>
                                              <TextInput
                                                   className="form-input rounded-md shadow-sm mt-4 block w-full"
-                                                  label="Title"
-                                                  name="title"
+                                                  label="Name"
+                                                  name="name"
                                                   type="text"
                                                   disable={false}
                                                   readonly={false}
                                                   must={true}
-                                                  errors={errors.title}
-                                                  value={data.title}
-                                                  onChange={e => setData('title', e.target.value)}
+                                                  errors={errors.name}
+                                                  value={data.name}
+                                                  onChange={e => setData('name', e.target.value)}
                                              />
                                              <div className="form-input rounded-md shadow-sm mt-4 block w-full">
-                                                  <label className="block font-medium text-sm text-gray-700" htmlFor="intro">Intro</label>
+                                                  <label className="block font-medium text-sm text-gray-700" htmlFor="intro">Short Description</label>
                                                   <CKEditor
-                                                       initData={data.intro}
+                                                       initData={data.short_des}
                                                        name="intro"
                                                        config={{toolbar: [
                                                             ['Cut', 'Copy', 'Paste', 'Undo', 'Redo'],
@@ -178,16 +178,16 @@ const Edit = () => {
                                                        onChange={(e) => {
                                                             setData((data) => ({
                                                                  ...data,
-                                                                 intro: e.editor.getData(),
+                                                                 short_des: e.editor.getData(),
                                                             }));
                                                        }}
                                                   />
                                              </div>
                                              <div className="form-input rounded-md shadow-sm mt-4 block w-full">
-                                                  <label className="block font-medium text-sm text-gray-700" htmlFor="intro">Content</label>
+                                                  <label className="block font-medium text-sm text-gray-700" htmlFor="intro">Description</label>
                                                   <CKEditor
-                                                       initData={data.body}
-                                                       name="body"
+                                                       initData={data.description}
+                                                       name="description"
                                                        config={{toolbar: [
                                                             ['Cut', 'Copy', 'Paste', 'Undo', 'Redo'],
                                                             ['Bold', 'Italic', 'Strike'],
@@ -199,19 +199,43 @@ const Edit = () => {
                                                        onChange={(e) => {
                                                             setData((data) => ({
                                                                  ...data,
-                                                                 body: e.editor.getData(),
+                                                                 description: e.editor.getData(),
                                                             }));
                                                        }}
                                                   />
                                              </div>
+                                             <TextInput
+                                                  className="form-input rounded-md shadow-sm mt-4 block w-full"
+                                                  label="Currency"
+                                                  name="currency"
+                                                  type="text"
+                                                  disable={+false}
+                                                  readonly={+false}
+                                                  must={+false}
+                                                  errors={errors.currency}
+                                                  value={data.currency}
+                                                  onChange={e => setData('currency', e.target.value)}
+                                             />
+                                             <TextInput
+                                                  className="form-input rounded-md shadow-sm mt-4 block w-full"
+                                                  label="Price"
+                                                  name="price"
+                                                  type="number"
+                                                  disable={+false}
+                                                  readonly={+false}
+                                                  must={+false}
+                                                  errors={errors.price}
+                                                  value={data.price}
+                                                  onChange={e => setData('price', e.target.value)}
+                                             />
                                              <SelectInput
                                                   className={`flex-shrink w-full inline-block relative mt-4 mr-2 ${data.edit?'hidden':''}`}
                                                   label="Gallery"
                                                   name="gallery"
-                                                  disable={false}
-                                                  readOnly={false}
-                                                  must={false}
-                                                  focus={false}
+                                                  disable={+false}
+                                                  readOnly={+false}
+                                                  must={+false}
+                                                  focus={+false}
                                                   errors={errors.gallery}
                                                   value={data.gallery}
                                                   onChange={e => setData('gallery', e.target.value)}
@@ -222,16 +246,8 @@ const Edit = () => {
                                                   })}
                                              </SelectInput>
                                              <label className="flex items-center mt-3" htmlFor="status">
-                                                  <input name="status" className="form-checkbox" type="checkbox" value={data.status} checked={data.status} onChange={e => setData('status', !data.status)}/>
+                                                  <input name="active" className="form-checkbox" type="checkbox" value={data.active} checked={data.active} onChange={e => setData('active', !data.status)}/>
                                                   <span className="ml-2 text-sm text-gray-800">Active</span>
-                                             </label>
-                                             <label className="flex items-center mt-3" htmlFor="show_home">
-                                                  <input name="show_home" className="form-checkbox" type="checkbox" value={data.show_home} checked={data.show_home} onChange={e => setData('show_home', !data.show_home)}/>
-                                                  <span className="ml-2 text-sm text-gray-800">Show in Home Page</span>
-                                             </label>
-                                             <label className="flex items-center mt-3" htmlFor="show_menu">
-                                                  <input name="show_menu" className="form-checkbox" type="checkbox" value={data.show_menu} checked={data.show_menu} onChange={e => setData('show_menu', !data.show_menu)}/>
-                                                  <span className="ml-2 text-sm text-gray-800">Show In Main Menu</span>
                                              </label>
                                              <label className="flex items-center mt-3" htmlFor="publish">
                                                   <input name="publish" className="form-checkbox" type="checkbox" value={data.publish} checked={data.publish} onChange={e => setData('publish', !data.publish)}/>
@@ -254,6 +270,6 @@ const Edit = () => {
 
 // Persisten layout
 // Docs: https://inertiajs.com/pages#persistent-layouts
-Edit.layout = page => <Layout children={page} header={'Edit Post'} />;
+Edit.layout = page => <Layout children={page} header={'Edit Product'} />;
 
 export default Edit;

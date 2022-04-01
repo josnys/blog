@@ -30,11 +30,6 @@ const Create = () => {
           publish: false,
      });
 
-     const [values, setValues] = useState({
-          intro: '',
-          body: '',
-     });
-
      function handleChangeCategory(e) {
           e.preventDefault();
           if(e.target.value != ''){
@@ -82,11 +77,6 @@ const Create = () => {
 
      function handleSubmit(e) {
           e.preventDefault();
-          transform((data) => ({
-               ...data,
-               intro: values.intro,
-               body: values.body,
-          }));
           post(route('admin.post.store'));
      }
 
@@ -130,10 +120,10 @@ const Create = () => {
                                                   className={`flex-shrink w-full inline-block relative mt-4 mr-2 ${data.edit?'hidden':''}`}
                                                   label="Language"
                                                   name="language"
-                                                  disable={+false}
-                                                  readOnly={+false}
-                                                  must={+true}
-                                                  focus={+false}
+                                                  disable={false}
+                                                  readOnly={false}
+                                                  must={true}
+                                                  focus={false}
                                                   errors={errors.language}
                                                   value={data.language}
                                                   onChange={e => setData('language', e.target.value)}
@@ -147,10 +137,10 @@ const Create = () => {
                                                   className={`flex-shrink w-full inline-block relative mt-4 mr-2 ${data.edit?'hidden':''}`}
                                                   label="Category"
                                                   name="category"
-                                                  disable={+false}
-                                                  readOnly={+false}
-                                                  must={+false}
-                                                  focus={+false}
+                                                  disable={false}
+                                                  readOnly={false}
+                                                  must={false}
+                                                  focus={false}
                                                   errors={errors.category}
                                                   value={data.category}
                                                   onChange={handleChangeCategory}
@@ -164,10 +154,10 @@ const Create = () => {
                                                   className={`flex-shrink w-full inline-block relative mt-4 mr-2 ${data.edit?'hidden':''}`}
                                                   label="Sub-Category"
                                                   name="subcategory"
-                                                  disable={+false}
-                                                  readOnly={+false}
-                                                  must={+false}
-                                                  focus={+false}
+                                                  disable={false}
+                                                  readOnly={false}
+                                                  must={false}
+                                                  focus={false}
                                                   errors={errors.subcategory}
                                                   value={data.subcategory}
                                                   onChange={e => setData('subcategory', e.target.value)}
@@ -182,9 +172,9 @@ const Create = () => {
                                                   label="Title"
                                                   name="title"
                                                   type="text"
-                                                  disable={+false}
-                                                  readonly={+false}
-                                                  must={+true}
+                                                  disable={false}
+                                                  readonly={false}
+                                                  must={true}
                                                   errors={errors.title}
                                                   value={data.title}
                                                   onChange={e => setData('title', e.target.value)}
@@ -192,7 +182,7 @@ const Create = () => {
                                              <div className="form-input rounded-md shadow-sm mt-4 block w-full">
                                                   <label className="block font-medium text-sm text-gray-700" htmlFor="intro">Intro</label>
                                                   <CKEditor
-                                                       initData={values.intro}
+                                                       initData={data.intro}
                                                        name="intro"
                                                        config={{toolbar: [
                                                             ['Cut', 'Copy', 'Paste', 'Undo', 'Redo'],
@@ -203,18 +193,17 @@ const Create = () => {
                                                             ['Styles','Format', 'Font', 'FontSize']
                                                        ]}}
                                                        onChange={(e) => {
-                                                            setValues(values => ({
-                                                                 ...values,
+                                                            setData(data => ({
+                                                                 ...data,
                                                                  intro: e.editor.getData(),
                                                             }));
-                                                            setData('intro', e.editor.getData());
                                                        }}
                                                   />
                                              </div>
                                              <div className="form-input rounded-md shadow-sm mt-4 block w-full">
                                                   <label className="block font-medium text-sm text-gray-700" htmlFor="intro">Content</label>
                                                   <CKEditor
-                                                       initData={values.body}
+                                                       initData={data.body}
                                                        name="body"
                                                        config={{toolbar: [
                                                             ['Cut', 'Copy', 'Paste', 'Undo', 'Redo'],
@@ -225,11 +214,10 @@ const Create = () => {
                                                             ['Styles','Format', 'Font', 'FontSize']
                                                        ]}}
                                                        onChange={(e) => {
-                                                            setValues(values => ({
-                                                                 ...values,
+                                                            setData(data => ({
+                                                                 ...data,
                                                                  body: e.editor.getData(),
                                                             }));
-                                                            setData('body', e.editor.getData());
                                                        }}
                                                   />
                                              </div>
@@ -237,10 +225,10 @@ const Create = () => {
                                                   className={`flex-shrink w-full inline-block relative mt-4 mr-2 ${data.edit?'hidden':''}`}
                                                   label="Gallery"
                                                   name="gallery"
-                                                  disable={+false}
-                                                  readOnly={+false}
-                                                  must={+false}
-                                                  focus={+false}
+                                                  disable={false}
+                                                  readOnly={false}
+                                                  must={false}
+                                                  focus={false}
                                                   errors={errors.gallery}
                                                   value={data.gallery}
                                                   onChange={e => setData('gallery', e.target.value)}

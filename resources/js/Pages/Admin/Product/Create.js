@@ -11,24 +11,29 @@ import { BackButton } from '@/Shared/BackButton';
 import LoadingButton from '@/Shared/LoadingButton';
 import Icon from '@/Shared/Icon';
 
-const Edit = () => {
+const Create = () => {
      const { auth, info } = usePage().props;
      const { data, setData, post, processing, errors, transform } = useForm({
-          detail: info.detail.id,
-          language: info.language.id || '',
-          category: info.category || '',
-          subcategory: info.subcategory || '',
-          cover: info.cover || '',
-          selectedCover: info.selectedCover || '',
-          subs: info.subs || [],
-          title: info.detail.title || '',
-          intro: info.detail.intro || '',
-          body: info.detail.body || '',
-          gallery: info.detail.gallery || '',
-          status: info.status || true,
-          show_home: info.show_home || false,
-          show_menu: info.show_menu || false,
-          publish: info.publish || false,
+          detail: null,
+          language: '',
+          category: '',
+          subcategory: '',
+          cover: '',
+          selectedCover: '',
+          subs: [],
+          name: '',
+          short_des: '',
+          description: '',
+          currency: '',
+          price: 0,
+          gallery: '',
+          active: true,
+          publish: false,
+     });
+
+     const [values, setValues] = useState({
+          short_des: '',
+          description: '',
      });
 
      function handleChangeCategory(e) {
@@ -78,23 +83,28 @@ const Edit = () => {
 
      function handleSubmit(e) {
           e.preventDefault();
-          post(route('admin.post.update', [info.id, info.language.id]));
+          transform((data) => ({
+               ...data,
+               short_des: values.short_des,
+               description: values.description,
+          }));
+          post(route('admin.product.store'));
      }
 
      return (
           <React.Fragment key="uprofile">
                <Helmet>
-                    <title>Update Post</title>
+                    <title>Create Product</title>
                </Helmet>
                <form onSubmit={handleSubmit}>
                     <ProfileCard>
                          <div className="md:col-span-1">
                               <div className="px-4 sm:px-0">
-                                   <h3 className="text-lg font-medium text-gray-900">Update Post</h3>
+                                   <h3 className="text-lg font-medium text-gray-900">Create Product</h3>
                                    <p className="mt-1 text-sm text-gray-600">
-                                        Update post in {}.
+                                        Create a new product.
                                    </p>
-                                   <h4 className="mt-4 text-md text-gray-600">Selected Cover for post</h4>
+                                   <h4 className="mt-4 text-md text-gray-600">Selected main image for product</h4>
                                    {data.selectedCover && (<img className="w-full" onClick={handleRemove} src={data.selectedCover} />)}
                                    {(info.medias.length > 0) && (<div className="col-span-12 border-t border-gray-300 mt-4 pt-4">
                                         <div className="w-full grid grid-cols-3 gap-3">
@@ -114,9 +124,26 @@ const Edit = () => {
                               <div className="px-4 py-5 sm:p-6">
                                    <div className="grid grid-cols-6 gap-6">
                                         <div className="col-span-12 text-right">
-                                             <BackButton link={'admin.post.index'} linkParams={''} />
+                                             <BackButton link={'admin.product.index'} linkParams={null} />
                                         </div>
                                         <div className="col-span-12">
+                                             <SelectInput
+                                                  className={`flex-shrink w-full inline-block relative mt-4 mr-2 ${data.edit?'hidden':''}`}
+                                                  label="Language"
+                                                  name="language"
+                                                  disable={false}
+                                                  readOnly={false}
+                                                  must={true}
+                                                  focus={false}
+                                                  errors={errors.language}
+                                                  value={data.language}
+                                                  onChange={e => setData('language', e.target.value)}
+                                             >
+                                                  <option value="" className="text-gray-600 italic">Select Language</option>
+                                                  {info.languages.map(({id, name}) => {
+                                                       return <option key={`ln${id}`} value={id}>{name}</option>
+                                                  })}
+                                             </SelectInput>
                                              <SelectInput
                                                   className={`flex-shrink w-full inline-block relative mt-4 mr-2 ${data.edit?'hidden':''}`}
                                                   label="Category"
@@ -124,7 +151,7 @@ const Edit = () => {
                                                   disable={false}
                                                   readOnly={false}
                                                   must={false}
-                                                  focus={false}
+                                                  focus={true}
                                                   errors={errors.category}
                                                   value={data.category}
                                                   onChange={handleChangeCategory}
@@ -141,53 +168,33 @@ const Edit = () => {
                                                   disable={false}
                                                   readOnly={false}
                                                   must={false}
-                                                  focus={false}
+                                                  focus={true}
                                                   errors={errors.subcategory}
                                                   value={data.subcategory}
                                                   onChange={e => setData('subcategory', e.target.value)}
                                              >
-                                                  <option value="" className="text-gray-600 italic">Select Sub-Category</option>
+                                                  <option value="" className="text-gray-600 italic">Select Category</option>
                                                   {data.subs.map(({id, name}) => {
                                                        return <option key={`scat${id}`} value={id}>{name}</option>
                                                   })}
                                              </SelectInput>
                                              <TextInput
                                                   className="form-input rounded-md shadow-sm mt-4 block w-full"
-                                                  label="Title"
-                                                  name="title"
+                                                  label="Name"
+                                                  name="name"
                                                   type="text"
-                                                  disable={false}
-                                                  readonly={false}
-                                                  must={true}
-                                                  errors={errors.title}
-                                                  value={data.title}
-                                                  onChange={e => setData('title', e.target.value)}
+                                                  disable={+false}
+                                                  readonly={+false}
+                                                  must={+true}
+                                                  errors={errors.name}
+                                                  value={data.name}
+                                                  onChange={e => setData('name', e.target.value)}
                                              />
                                              <div className="form-input rounded-md shadow-sm mt-4 block w-full">
-                                                  <label className="block font-medium text-sm text-gray-700" htmlFor="intro">Intro</label>
+                                                  <label className="block font-medium text-sm text-gray-700" htmlFor="intro">Short Description</label>
                                                   <CKEditor
-                                                       initData={data.intro}
-                                                       name="intro"
-                                                       config={{toolbar: [
-                                                            ['Cut', 'Copy', 'Paste', 'Undo', 'Redo'],
-                                                            ['Bold', 'Italic', 'Strike'],
-                                                            ['NumberedList', 'BulletedList', 'Outdent', 'Indent', 'Blockquote', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
-                                                            ['Link','Anchor'],
-                                                            ['Styles','Format', 'Font', 'FontSize']
-                                                       ]}}
-                                                       onChange={(e) => {
-                                                            setData((data) => ({
-                                                                 ...data,
-                                                                 intro: e.editor.getData(),
-                                                            }));
-                                                       }}
-                                                  />
-                                             </div>
-                                             <div className="form-input rounded-md shadow-sm mt-4 block w-full">
-                                                  <label className="block font-medium text-sm text-gray-700" htmlFor="intro">Content</label>
-                                                  <CKEditor
-                                                       initData={data.body}
-                                                       name="body"
+                                                       initData={data.short_des}
+                                                       name="short_des"
                                                        config={{toolbar: [
                                                             ['Cut', 'Copy', 'Paste', 'Undo', 'Redo'],
                                                             ['Bold', 'Italic', 'Strike'],
@@ -197,13 +204,58 @@ const Edit = () => {
                                                             ['Styles','Format', 'Font', 'FontSize']
                                                        ]}}
                                                        onChange={(e) => {
-                                                            setData((data) => ({
+                                                            setData(data => ({
                                                                  ...data,
-                                                                 body: e.editor.getData(),
+                                                                 short_des: e.editor.getData(),
                                                             }));
                                                        }}
                                                   />
                                              </div>
+                                             <div className="form-input rounded-md shadow-sm mt-4 block w-full">
+                                                  <label className="block font-medium text-sm text-gray-700" htmlFor="intro">Description</label>
+                                                  <CKEditor
+                                                       initData={data.description}
+                                                       name="description"
+                                                       config={{toolbar: [
+                                                            ['Cut', 'Copy', 'Paste', 'Undo', 'Redo'],
+                                                            ['Bold', 'Italic', 'Strike'],
+                                                            ['NumberedList', 'BulletedList', 'Outdent', 'Indent', 'Blockquote', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+                                                            ['Link','Anchor'],
+                                                            ['Image','Table'],
+                                                            ['Styles','Format', 'Font', 'FontSize']
+                                                       ]}}
+                                                       onChange={(e) => {
+                                                            setData(data => ({
+                                                                 ...data,
+                                                                 description: e.editor.getData(),
+                                                            }));
+                                                       }}
+                                                  />
+                                             </div>
+                                             <TextInput
+                                                  className="form-input rounded-md shadow-sm mt-4 block w-full"
+                                                  label="Currency"
+                                                  name="currency"
+                                                  type="text"
+                                                  disable={+false}
+                                                  readonly={+false}
+                                                  must={+false}
+                                                  errors={errors.currency}
+                                                  value={data.currency}
+                                                  onChange={e => setData('currency', e.target.value)}
+                                             />
+                                             <TextInput
+                                                  className="form-input rounded-md shadow-sm mt-4 block w-full"
+                                                  label="Price"
+                                                  name="price"
+                                                  type="number"
+                                                  disable={+false}
+                                                  readonly={+false}
+                                                  must={+false}
+                                                  errors={errors.price}
+                                                  value={data.price}
+                                                  onChange={e => setData('price', e.target.value)}
+                                             />
                                              <SelectInput
                                                   className={`flex-shrink w-full inline-block relative mt-4 mr-2 ${data.edit?'hidden':''}`}
                                                   label="Gallery"
@@ -222,16 +274,8 @@ const Edit = () => {
                                                   })}
                                              </SelectInput>
                                              <label className="flex items-center mt-3" htmlFor="status">
-                                                  <input name="status" className="form-checkbox" type="checkbox" value={data.status} checked={data.status} onChange={e => setData('status', !data.status)}/>
+                                                  <input name="active" className="form-checkbox" type="checkbox" value={data.active} checked={data.active} onChange={e => setData('active', !data.status)}/>
                                                   <span className="ml-2 text-sm text-gray-800">Active</span>
-                                             </label>
-                                             <label className="flex items-center mt-3" htmlFor="show_home">
-                                                  <input name="show_home" className="form-checkbox" type="checkbox" value={data.show_home} checked={data.show_home} onChange={e => setData('show_home', !data.show_home)}/>
-                                                  <span className="ml-2 text-sm text-gray-800">Show in Home Page</span>
-                                             </label>
-                                             <label className="flex items-center mt-3" htmlFor="show_menu">
-                                                  <input name="show_menu" className="form-checkbox" type="checkbox" value={data.show_menu} checked={data.show_menu} onChange={e => setData('show_menu', !data.show_menu)}/>
-                                                  <span className="ml-2 text-sm text-gray-800">Show In Main Menu</span>
                                              </label>
                                              <label className="flex items-center mt-3" htmlFor="publish">
                                                   <input name="publish" className="form-checkbox" type="checkbox" value={data.publish} checked={data.publish} onChange={e => setData('publish', !data.publish)}/>
@@ -242,7 +286,7 @@ const Edit = () => {
                               </div>
                               <div className="flex items-center justify-end px-4 py-3 bg-gray-100 text-right sm:px-6 rounded-b">
                                    <LoadingButton type="submit" loading={processing} className="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring-gray disabled:opacity-25 transition ease-in-out duration-150 ml-4">
-                                        Update
+                                        Save
                                    </LoadingButton>
                               </div>
                          </DataCard>
@@ -254,6 +298,6 @@ const Edit = () => {
 
 // Persisten layout
 // Docs: https://inertiajs.com/pages#persistent-layouts
-Edit.layout = page => <Layout children={page} header={'Edit Post'} />;
+Create.layout = page => <Layout children={page} header={'Create Product'} />;
 
-export default Edit;
+export default Create;

@@ -1,12 +1,6 @@
 {
-<<<<<<< Updated upstream
-    "/js/app.js": "/js/app.js?id=4fe10e0a0c8de7673421cc36137d3ea2",
+    "/js/app.js": "/js/app.js?id=658cd9b6856680da1464a80e3055e1ca",
     "/service-worker.js": "/service-worker.js?id=1bb88d10b95a7a496bc17e41f49109df",
-    "/css/app.css": "/css/app.css?id=7de83b45bb26b6d53984101a07e5f056",
-=======
-    "/js/app.js": "/js/app.js?id=fe0e2f5109df990298ec645179e2b3e3",
-    "/service-worker.js": "/service-worker.js?id=2497ab209d85114c5c3dbea6837b48d8",
-    "/css/app.css": "/css/app.css?id=094f57e2dbd5cb3376f8b44ce19e10c2",
->>>>>>> Stashed changes
+    "/css/app.css": "/css/app.css?id=346a49cdedf57b85d1893585f98f4f1f",
     "/manifest.json": "/manifest.json?id=fae5a23c752e86bf66e09a09ca3ef839"
 }

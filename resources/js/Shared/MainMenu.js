@@ -16,6 +16,7 @@ export default ({ className }) => {
                     {can(auth.user, 'read-user')?<MainMenuItem text="Medias" link="admin.media.index" icon="camera" />:null}
                     {can(auth.user, 'read-user')?<MainMenuItem text="Categories" link="admin.category.index" icon="category" />:null}
                     {can(auth.user, 'read-user')?<MainMenuItem text="Posts" link="admin.post.index" icon="book" />:null}
+                    {can(auth.user, 'read-user')?<MainMenuItem text="Products" link="admin.product.index" icon="folder-open" />:null}
                     {can(auth.user, 'read-user')?<MainMenuItem text="Settings" link="admin.setting.create" icon="cog" />:null}
                </div>
                <div className="absolute flex w-56 pr-4 mt-2 justify-content-center bottom-0 space-x-1 bg-slate-50">

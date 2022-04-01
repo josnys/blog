@@ -11,13 +11,12 @@ import SelectInput from '@/Shared/SelectInput';
 import LoadingButton from '@/Shared/LoadingButton';
 import Icon from '@/Shared/Icon';
 import Pagination from '@/Shared/Pagination';
-import { can } from '@/utils';
+import { can, currencyFormat } from '@/utils';
 
 const Show = () => {
      const { auth, info } = usePage().props;
      const { data, setData, post, processing, errors, transform } = useForm({
           publish: info.publish || '',
-          archive: info.archive || '',
      });
      const [values, setValues] = useState({
           language: info.language_index[0].id || '',
@@ -33,45 +32,37 @@ const Show = () => {
           if(index != -1){
                setValues((values) => ({
                     ...values,
+                    language: e.target.value,
                     activeIndex: index,
                }));
           }
           return;
      }
 
-     function handlePublish(e) {
-          e.preventDefault();
-          post(route('admin.post.publish', info.id), {preserveState:false});
-     }
-
-     function handleArchive(e) {
-          e.preventDefault();
-          post(route('admin.post.archive', info.id), {preserveState:false});
-     }
-
      return (
           <React.Fragment key="security-index">
                <Helmet>
-                    <title>View Post</title>
+                    <title>View Product</title>
                </Helmet>
                <div className="max-w-7xl mx-auto p-2">
-                    <InertiaLink className="font-semibold text-md text-gray-700 hover:text-gray-800 leading-tight" href={route('admin.home')}>Dashboard</InertiaLink> | <span className="text-md text-gray-700 leading-tight">View Post</span>
+                    <InertiaLink className="font-semibold text-md text-gray-700 hover:text-gray-800 leading-tight" href={route('admin.home')}>Dashboard</InertiaLink> | <span className="text-md text-gray-700 leading-tight">View Product</span>
                </div>
                <DataContainer>
                     <div className="col-span-12">
                          <div className="float-right">
-                              <BackButton link={'admin.post.index'} linkParams={''} />
+                              <BackButton link={'admin.product.index'} linkParams={null} />
                          </div>
                     </div>
                     <div className="col-span-12 border-t border-gray-400"></div>
                     <div className="flex col-span-12">
                          <div className="w-2/3 p-2">
-                              <h1 className="text-lg text-gray-700 font-medium">{info.details[values.activeIndex]?.title}</h1>
-                              <div className="text-sm text-gray-500">{info.category && (<span>{info.category} / </span>)}{info.subcategory && (<span>{info.subcategory}</span>)}</div>
+                              <h1 className="text-lg text-gray-700 font-medium">{info.details[values.activeIndex]?.name}</h1>
+                              <div className="text-sm text-gray-500">{info.category && (<span>{info.category}</span>)}{info.subcategory && (<span> / {info.subcategory}</span>)}</div>
                               <div className="text-sm text-gray-600 italic">{info.details[values.activeIndex]?.language} version</div>
                               {info.cover && (<img src={info.cover} className="w-full" />)}
-                              <article className="mt-4 prose prose-slate prose-h1:text-blue-700 text-justify italic text-gray-500" dangerouslySetInnerHTML={{ __html: info.details[values.activeIndex]?.intro }}></article>
-                              <article className="mt-4 prose prose-slate prose-h1:text-blue-700 text-justify" dangerouslySetInnerHTML={{ __html: info.details[values.activeIndex]?.body }}></article>
+                              <p>{currencyFormat(info.price, info.currency)}</p>
+                              <article className="mt-4 prose prose-slate prose-h1:text-blue-700 text-justify italic text-gray-500" dangerouslySetInnerHTML={{ __html: info.details[values.activeIndex]?.short_des }}></article>
+                              <article className="mt-4 prose prose-slate prose-h1:text-blue-700 text-justify" dangerouslySetInnerHTML={{ __html: info.details[values.activeIndex]?.description }}></article>
                          </div>
                          <div className="w-1/3 p-2 border-l border-gray-300">
                               <h1 className="text-blue-600 font-medium">Actions</h1>
@@ -97,7 +88,7 @@ const Show = () => {
                                    <ul className="list-none list-inside">
                                         {info.languages_create.map(({id, name}, i) => {
                                              return <li key={`tr${i}`} className="text-sm">
-                                                  <InertiaLink className="text-gray-600 hover:text-blue-600" href={route('admin.post.translate.create', [info.id, id])}>{name}</InertiaLink>
+                                                  <InertiaLink className="text-gray-600 hover:text-blue-600" href={route('admin.product.translate.create', [info.id, id])}>{name}</InertiaLink>
                                              </li>
                                         })}
                                    </ul>
@@ -107,33 +98,11 @@ const Show = () => {
                                    <ul className="list-none list-inside">
                                         {info.languages_edit.map(({id, name}, i) => {
                                              return <li key={`ed${i}`} className="text-sm">
-                                                  <InertiaLink className="text-gray-600 hover:text-blue-600" href={route('admin.post.edit', [info.id, id])}>{`${name} Version`}</InertiaLink>
+                                                  <InertiaLink className="text-gray-600 hover:text-blue-600" href={route('admin.product.edit', [info.id, id])}>{`${name} Version`}</InertiaLink>
                                              </li>
                                         })}
                                    </ul>
                               </div>)}
-                              <div className="w-full bg-gray-100 rounded p-2 mt-2">
-                                   <TextInput
-                                        className="form-input rounded-md shadow-sm block w-full"
-                                        label="Publish On"
-                                        name="publish"
-                                        type="datetime-local"
-                                        disable={+false}
-                                        readonly={+false}
-                                        must={+true}
-                                        errors={errors.publish}
-                                        value={data.publish}
-                                        onChange={e => setData('publish', e.target.value)}
-                                   />
-                                   <LoadingButton type="button" onClick={handlePublish} className="w-full mt-3 items-center items-center justify-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring-gray disabled:opacity-25 transition ease-in-out duration-150">
-                                        {info.published?'Unschedule':'Schedule'}
-                                   </LoadingButton>
-                              </div>
-                              <div className="w-full bg-gray-100 rounded p-2 mt-2">
-                                   <LoadingButton type="button" onClick={handleArchive} className="w-full items-center items-center justify-center px-4 py-2 bg-yellow-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-yellow-700 active:bg-yellow-900 focus:outline-none focus:border-yellow-900 focus:ring-yellow disabled:opacity-25 transition ease-in-out duration-150">
-                                        {data.archive?'Unarchive':'Archive'}
-                                   </LoadingButton>
-                              </div>
                          </div>
                     </div>
                </DataContainer>
@@ -143,6 +112,6 @@ const Show = () => {
 
 // Persisten layout
 // Docs: https://inertiajs.com/pages#persistent-layouts
-Show.layout = page => <Layout children={page} header={'View Post'} />;
+Show.layout = page => <Layout children={page} header={'View Product'} />;
 
 export default Show;
