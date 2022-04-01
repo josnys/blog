@@ -123,3 +123,12 @@ export function can(user, permission){
      }
      return false;
 }
+
+export function currencyFormat(value, curr) {
+     let formatter = new Intl.NumberFormat('en-US',{
+          style: 'currency',
+          currency: curr,
+     });
+     value = !isNaN(value) ? value : 0;
+     return formatter.format(value);
+}

@@ -15,6 +15,8 @@ use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\PostTranslateController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ProductTranslateController;
 use App\Http\Controllers\WelcomeController;
 
 /*
@@ -114,6 +116,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
      Route::post('/post/{post}/language/{language}/edit', [PostController::class, 'update'])->middleware('permission:read-user')->name('post.update');
      Route::get('/post/{post}/lang/{language}/translate', [PostTranslateController::class, 'getTranslate'])->middleware('permission:read-user')->name('post.translate.create');
      Route::post('/post/{post}/lang/{language}/translate', [PostTranslateController::class, 'postTranslate'])->middleware('permission:read-user')->name('post.translate.store');
+
+     // Product
+     Route::get('/product', [ProductController::class, 'index'])->middleware('permission:read-user')->name('product.index');
+     Route::get('/product/create', [ProductController::class, 'create'])->middleware('permission:read-user')->name('product.create');
+     Route::post('/product/create', [ProductController::class, 'store'])->middleware('permission:read-user')->name('product.store');
+     Route::get('/product/{product}/view', [ProductController::class, 'show'])->middleware('permission:read-user')->name('product.show');
+     Route::get('/product/{product}/language/{language}/edit', [ProductController::class, 'edit'])->middleware('permission:read-user')->name('product.edit');
+     Route::post('/product/{product}/language/{language}/edit', [ProductController::class, 'update'])->middleware('permission:read-user')->name('product.update');
+     Route::get('/product/{product}/lang/{language}/translate', [ProductTranslateController::class, 'getTranslate'])->middleware('permission:read-user')->name('product.translate.create');
+     Route::post('/product/{product}/lang/{language}/translate', [ProductTranslateController::class, 'postTranslate'])->middleware('permission:read-user')->name('product.translate.store');
 
      // Settings
      Route::get('/setting', [SettingController::class, 'create'])->middleware('permission:read-user')->name('setting.create');
