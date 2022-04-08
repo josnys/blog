@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\PostTranslateController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductTranslateController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\SiteMenuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,10 +31,14 @@ use App\Http\Controllers\WelcomeController;
 |
 */
 
-Route::get('/', [WelcomeController::class, 'index']);
+Route::get('/', [WelcomeController::class, 'index'])->name('site');
+Route::get('/about-us', [WelcomeController::class, 'about'])->name('site.about');
+Route::get('/contact-us', [WelcomeController::class, 'contact'])->name('site.contact');
+Route::any('menu/{url}', [SiteMenuController::class, 'resolveMenu'])->where('url', '.*')->name('site.menu');
 
 Route::get('/img/{path}', [ImageController::class, 'show'])->where('path', '.*')->name('show.image');
 Route::post('lang/{locale}', [WelcomeController::class, 'setLanguage'])->name('set.language');
+
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], function(){
      // Profile
@@ -67,6 +72,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
      Route::post('/user/{user}/role', [UserController::class, 'postRole'])->middleware('permission:assign-role')->name('user.post.role');
      Route::get('/user/{user}/resetPassword', [UserController::class, 'getResetPassword'])->middleware('permission:change-user-password')->name('user.get.resetpassword');
      Route::post('/user/{user}/resetPassword', [UserController::class, 'postResetPassword'])->middleware('permission:change-user-password')->name('user.post.resetpassword');
+
+     // Settings
+     Route::get('/setting', [SettingController::class, 'create'])->middleware('permission:read-user')->name('setting.create');
+     Route::post('/setting', [SettingController::class, 'store'])->middleware('permission:read-user')->name('setting.store');
 
      // Languages
      Route::get('/language', [LanguageController::class, 'index'])->middleware('permission:read-user')->name('language.index');
@@ -127,7 +136,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
      Route::get('/product/{product}/lang/{language}/translate', [ProductTranslateController::class, 'getTranslate'])->middleware('permission:read-user')->name('product.translate.create');
      Route::post('/product/{product}/lang/{language}/translate', [ProductTranslateController::class, 'postTranslate'])->middleware('permission:read-user')->name('product.translate.store');
 
-     // Settings
-     Route::get('/setting', [SettingController::class, 'create'])->middleware('permission:read-user')->name('setting.create');
-     Route::post('/setting', [SettingController::class, 'store'])->middleware('permission:read-user')->name('setting.store');
+     // Featured Post and/or Product
+
 });

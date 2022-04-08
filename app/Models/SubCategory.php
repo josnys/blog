@@ -6,12 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class SubCategory extends Model
 {
      use HasFactory;
 
-     protected $fillable = ['category_id', 'url', 'show_sub_menu', 'is_active'];
+     protected $fillable = ['category_id', 'url', 'photo', 'show_sub_menu', 'is_active'];
 
      public function category()
      {
@@ -26,6 +27,11 @@ class SubCategory extends Model
      public function scopeActive($query)
      {
           return $query->where('is_active', true);
+     }
+
+     public function getPhotoUrlAttribute()
+     {
+          return ($this->photo && Storage::disk('local')->exists('category/subs/'.$this->photo)) ? route('show.image', 'category/subs/'.$this->photo) : null;
      }
 
      public static function getUrl($name)

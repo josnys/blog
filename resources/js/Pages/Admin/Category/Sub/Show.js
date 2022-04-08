@@ -4,6 +4,7 @@ import { InertiaLink, usePage, useForm } from '@inertiajs/inertia-react';
 import Layout from '@/Shared/Layout';
 import TextInput from '@/Shared/TextInput';
 import SelectInput from '@/Shared/SelectInput';
+import FileInput from '@/Shared/FileInput';
 import ProfileCard from '@/Shared/ProfileCard';
 import DataCard from '@/Shared/DataCard';
 import { BackButton } from '@/Shared/BackButton';
@@ -16,12 +17,22 @@ const Show = () => {
           category: info.category.id,
           name: '',
           lang: '',
+          cover: null,
+          selectedCover: null,
           menu: info.menu || false,
           status: info.status || true,
           edit: false,
           index: -1,
           id: null
      });
+
+     function handleFileChange(file, path) {
+          setData((data) => ({
+               ...data,
+               selectedCover: path,
+               cover: file
+          }));
+     }
 
      function activateEdit(e, i) {
           e.preventDefault();
@@ -70,6 +81,7 @@ const Show = () => {
                          <div className="md:col-span-1">
                               <div className="px-4 sm:px-0">
                                    <h3 className="text-lg font-medium text-gray-900">View Sub-Category</h3>
+                                   {info.photo && (<img src={info.photo} className="w-20 mx-auto" />)}
                                    <p className="text-gray-500 mt-4">Url: <span className="float-right font-semibold">{info.url}</span></p>
                                    <p className="text-gray-500">Show In Menu: <span className="float-right font-semibold">{info.menu_caption}</span></p>
                                    <p className="text-gray-500">Status: <span className="float-right font-semibold">{info.status_caption}</span></p>
@@ -99,6 +111,23 @@ const Show = () => {
                                                        return <option key={`ln${id}`} value={id}>{name}</option>
                                                   })}
                                              </SelectInput>
+                                             <div className={`${!data.edit?'hidden':''}`}>
+                                                  <label className="block font-medium text-sm text-gray-700" htmlFor="avatar">
+                                                       <span>Photo</span>
+                                                  </label>
+                                                  <div className="mt-2">
+                                                       {data.selectedCover && (<img src={`${data.selectedCover}`} className="rounded-full h-20 w-20" />)}
+                                                  </div>
+                                                  <FileInput
+                                                       className="w-full lg:w-1/2"
+                                                       label="Select Image"
+                                                       name="cover"
+                                                       accept="image/.jpg,.jpeg,.png"
+                                                       errors={errors.cover}
+                                                       value={data.cover}
+                                                       onChange={handleFileChange}
+                                                   />
+                                             </div>
                                              <TextInput
                                                   className="form-input rounded-md shadow-sm mt-4 block w-full"
                                                   label="Name"
