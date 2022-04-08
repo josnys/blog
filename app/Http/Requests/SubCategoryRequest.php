@@ -27,6 +27,7 @@ class SubCategoryRequest extends FormRequest
                'lang' => ['required', 'numeric', 'gt:0'],
                'category' => ['required', 'numeric', 'gt:0'],
                'name' => ['required', 'string'],
+               'cover' => ['nullable', 'sometimes', 'image', 'max:2048', 'mimes:jpeg,jpg,png'],
                'menu' => ['boolean'],
                'status' => ['boolean'],
           ];

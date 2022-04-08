@@ -3,6 +3,7 @@ import Helmet from 'react-helmet';
 import { InertiaLink, usePage, useForm } from '@inertiajs/inertia-react';
 import Layout from '@/Shared/Layout';
 import TextInput from '@/Shared/TextInput';
+import FileInput from '@/Shared/FileInput';
 import SelectInput from '@/Shared/SelectInput';
 import ProfileCard from '@/Shared/ProfileCard';
 import DataCard from '@/Shared/DataCard';
@@ -15,9 +16,20 @@ const Create = () => {
      const { data, setData, post, processing, errors } = useForm({
           name: '',
           lang: '',
+          cover: null,
+          selectedCover: null,
           menu: false,
           status: true,
+          feature: false,
      });
+
+     function handleFileChange(file, path) {
+          setData((data) => ({
+               ...data,
+               selectedCover: path,
+               cover: file
+          }));
+     }
 
      function handleSubmit(e) {
           e.preventDefault();
@@ -46,6 +58,21 @@ const Create = () => {
                                              <BackButton link={'admin.category.index'} linkParams={''} />
                                         </div>
                                         <div className="col-span-12">
+                                             <label className="block font-medium text-sm text-gray-700" htmlFor="avatar">
+                                                  <span>Photo</span>
+                                             </label>
+                                             <div className="mt-2">
+                                                  {data.selectedCover && (<img src={`${data.selectedCover}`} className="rounded-full h-20 w-20" />)}
+                                             </div>
+                                             <FileInput
+                                                  className="w-full lg:w-1/2"
+                                                  label="Select Image"
+                                                  name="cover"
+                                                  accept="image/.jpg,.jpeg,.png"
+                                                  errors={errors.cover}
+                                                  value={data.cover}
+                                                  onChange={handleFileChange}
+                                              />
                                              <SelectInput
                                                   className={`flex-shrink w-full inline-block relative mt-4 mr-2 ${data.edit?'hidden':''}`}
                                                   label="Language"
@@ -79,9 +106,13 @@ const Create = () => {
                                                   <input name="status" className="form-checkbox" type="checkbox" value={data.status} checked={data.status} onChange={e => setData('status', !data.status)}/>
                                                   <span className="ml-2 text-sm text-gray-800">Active</span>
                                              </label>
-                                             <label className="flex items-center mt-3" htmlFor="status">
+                                             <label className="flex items-center mt-3" htmlFor="menu">
                                                   <input name="menu" className="form-checkbox" type="checkbox" value={data.menu} checked={data.menu} onChange={e => setData('menu', !data.menu)}/>
                                                   <span className="ml-2 text-sm text-gray-800">Show In Menu</span>
+                                             </label>
+                                             <label className="flex items-center mt-3" htmlFor="feature">
+                                                  <input name="feature" className="form-checkbox" type="checkbox" value={data.feature} checked={data.feature} onChange={e => setData('feature', !data.feature)}/>
+                                                  <span className="ml-2 text-sm text-gray-800">Feature in Home Page</span>
                                              </label>
                                         </div>
                                    </div>

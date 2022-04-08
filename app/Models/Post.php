@@ -9,12 +9,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class Post extends Model
 {
      use HasFactory, Notifiable, HasPushSubscriptions;
 
-     protected $fillable = ['category_id', 'sub_category_id', 'media_id', 'slug', 'user_id', 'show_in_home', 'show_in_menu', 'is_active', 'published_at', 'archived_at'];
+     protected $fillable = ['category_id', 'sub_category_id', 'media_id', 'slug', 'user_id', 'show_in_home', 'show_in_menu', 'is_active', 'is_featured', 'published_at', 'archived_at'];
 
      public function category()
      {
@@ -39,6 +40,16 @@ class Post extends Model
      public function details()
      {
           return $this->hasMany(PostDetail::class);
+     }
+
+     public function scopeActive($query)
+     {
+          return $query->where('is_active', true);
+     }
+
+     public function scopePublished($query)
+     {
+          return $query->whereDate(DB::raw('published_at'), '<=', Carbon::now()->toDateString());
      }
 
      public static function getSlug($name)

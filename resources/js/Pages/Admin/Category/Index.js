@@ -27,19 +27,23 @@ const Index = () => {
                     <table className="table-fixed col-span-12 text-sm">
                          <thead className="bg-gray-300">
                               <tr>
+                                   <th className="px-2 py-1"></th>
                                    <th className="px-2 py-1">Names</th>
                                    <th className="px-2 py-1">Url</th>
                                    <th className="px-2 py-1">Show in Menu</th>
+                                   <th className="px-2 py-1">Feature Home Page</th>
                                    <th className="px-2 py-1">Active ?</th>
                                    <th className="px-2 py-1"></th>
                               </tr>
                          </thead>
                          <tbody>
-                              {info.categories.data.map(({id, url, names, menu, menu_caption, status, status_caption}) => {
+                              {info.categories.data.map(({id, url, photo, names, menu, menu_caption, status, status_caption, feature, feature_caption}) => {
                                    return <tr key={id}>
+                                        <td className="border px-2 py-1"><img src={photo} className="w-8 mx-auto" /></td>
                                         <td className="border px-2 py-1">{names.join(', ')}</td>
                                         <td className="border px-2 py-1">{url}</td>
                                         <td className={`border px-2 py-1 ${menu?'text-green-600':'text-red-600'} text-center`}>{menu_caption}</td>
+                                        <td className={`border px-2 py-1 ${feature?'text-green-600':'text-red-600'} text-center`}>{feature_caption}</td>
                                         <td className={`border px-2 py-1 ${status?'text-green-600':'text-red-600'} text-center`}>{status_caption}</td>
                                         <td className="border px-2 py-1">
                                              <DropdownButton caption="Actions" color="blue">
