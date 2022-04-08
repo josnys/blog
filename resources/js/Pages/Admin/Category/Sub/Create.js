@@ -4,6 +4,7 @@ import { InertiaLink, usePage, useForm } from '@inertiajs/inertia-react';
 import Layout from '@/Shared/Layout';
 import TextInput from '@/Shared/TextInput';
 import SelectInput from '@/Shared/SelectInput';
+import FileInput from '@/Shared/FileInput';
 import ProfileCard from '@/Shared/ProfileCard';
 import DataCard from '@/Shared/DataCard';
 import { BackButton } from '@/Shared/BackButton';
@@ -16,9 +17,19 @@ const Create = () => {
           category: info.category.id,
           name: '',
           lang: '',
+          cover: null,
+          selectedCover: null,
           menu: false,
           status: true,
      });
+
+     function handleFileChange(file, path) {
+          setData((data) => ({
+               ...data,
+               selectedCover: path,
+               cover: file
+          }));
+     }
 
      function handleSubmit(e) {
           e.preventDefault();
@@ -47,6 +58,21 @@ const Create = () => {
                                              <BackButton link={'admin.category.show'} linkParams={info.category.id} />
                                         </div>
                                         <div className="col-span-12">
+                                             <label className="block font-medium text-sm text-gray-700" htmlFor="avatar">
+                                                  <span>Photo</span>
+                                             </label>
+                                             <div className="mt-2">
+                                                  {data.selectedCover && (<img src={`${data.selectedCover}`} className="rounded-full h-20 w-20" />)}
+                                             </div>
+                                             <FileInput
+                                                  className="w-full lg:w-1/2"
+                                                  label="Select Image"
+                                                  name="cover"
+                                                  accept="image/.jpg,.jpeg,.png"
+                                                  errors={errors.cover}
+                                                  value={data.cover}
+                                                  onChange={handleFileChange}
+                                              />
                                              <SelectInput
                                                   className={`flex-shrink w-full inline-block relative mt-4 mr-2 ${data.edit?'hidden':''}`}
                                                   label="Language"

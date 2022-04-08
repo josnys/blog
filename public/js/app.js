@@ -723,6 +723,14 @@ eval("\n\nvar GetIntrinsic = __webpack_require__(/*! get-intrinsic */ \"./node_m
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var map = {
+	"./About": [
+		"./resources/js/Pages/About.js",
+		"resources_js_Pages_About_js"
+	],
+	"./About.js": [
+		"./resources/js/Pages/About.js",
+		"resources_js_Pages_About_js"
+	],
 	"./Admin/Category/Create": [
 		"./resources/js/Pages/Admin/Category/Create.js",
 		"resources_js_Pages_Admin_Category_Create_js"
@@ -1075,6 +1083,14 @@ var map = {
 		"./resources/js/Pages/Components/ProfileEditCard.js",
 		"resources_js_Pages_Components_ProfileEditCard_js"
 	],
+	"./Contact": [
+		"./resources/js/Pages/Contact.js",
+		"resources_js_Pages_Contact_js"
+	],
+	"./Contact.js": [
+		"./resources/js/Pages/Contact.js",
+		"resources_js_Pages_Contact_js"
+	],
 	"./Dashboard/Home": [
 		"./resources/js/Pages/Dashboard/Home.js",
 		"resources_js_Pages_Dashboard_Home_js"
@@ -1090,6 +1106,22 @@ var map = {
 	"./Dashboard/User/Profile.js": [
 		"./resources/js/Pages/Dashboard/User/Profile.js",
 		"resources_js_Pages_Dashboard_User_Profile_js"
+	],
+	"./Home": [
+		"./resources/js/Pages/Home.js",
+		"resources_js_Pages_Home_js"
+	],
+	"./Home.js": [
+		"./resources/js/Pages/Home.js",
+		"resources_js_Pages_Home_js"
+	],
+	"./MenuPage": [
+		"./resources/js/Pages/MenuPage.js",
+		"resources_js_Pages_MenuPage_js"
+	],
+	"./MenuPage.js": [
+		"./resources/js/Pages/MenuPage.js",
+		"resources_js_Pages_MenuPage_js"
 	],
 	"./Welcome": [
 		"./resources/js/Pages/Welcome.js",
@@ -1245,7 +1277,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "js/" + chunkId + ".js?id=" + {"resources_js_Pages_Admin_Category_Create_js":"405fe0e011080583","resources_js_Pages_Admin_Category_Index_js":"baabbe6d6e526864","resources_js_Pages_Admin_Category_Show_js":"59321a9e9bc88b33","resources_js_Pages_Admin_Category_Sub_Create_js":"8661cf293bc849d2","resources_js_Pages_Admin_Category_Sub_Show_js":"ba04db8d38dd770e","resources_js_Pages_Admin_Gallery_Create_js":"c96e8390dd9161a3","resources_js_Pages_Admin_Gallery_Index_js":"4ac76ee01d7a6638","resources_js_Pages_Admin_Gallery_Show_js":"87f329ff58ff1cca","resources_js_Pages_Admin_Language_Create_js":"067e68d1464036dd","resources_js_Pages_Admin_Language_Edit_js":"60c857ef9d059b38","resources_js_Pages_Admin_Language_Index_js":"5f51877b5b3ff526","resources_js_Pages_Admin_Media_Create_js":"e999a70386441592","resources_js_Pages_Admin_Media_Index_js":"a740cf314daea06f","resources_js_Pages_Admin_Media_Show_js":"aeed5e73e04e3244","resources_js_Pages_Admin_Post_Create_js":"8b6adf3faa311806","resources_js_Pages_Admin_Post_Edit_js":"4c894fa39a9d933f","resources_js_Pages_Admin_Post_Index_js":"d93457977e9e2ff5","resources_js_Pages_Admin_Post_Show_js":"fad1607de47a1060","resources_js_Pages_Admin_Post_Translate_js":"0070fc3c943316cb","resources_js_Pages_Admin_Product_Create_js":"fefdef5aa0084b4e","resources_js_Pages_Admin_Product_Edit_js":"d6f31d3a8f2d96c4","resources_js_Pages_Admin_Product_Index_js":"325649ed20affbad","resources_js_Pages_Admin_Product_Show_js":"ab0ff1dafde59e81","resources_js_Pages_Admin_Product_Translate_js":"12584a6d2a9a397c","resources_js_Pages_Admin_Security_AssignPermission_js":"a54f5158dc6747ae","resources_js_Pages_Admin_Security_CreatePermission_js":"70c9b72fa8d392ef","resources_js_Pages_Admin_Security_CreateRole_js":"ba6a540f74bb789f","resources_js_Pages_Admin_Security_EditPermission_js":"5b6a8431e0ceedbf","resources_js_Pages_Admin_Security_EditRole_js":"e2eb758e79c0142a","resources_js_Pages_Admin_Security_Index_js":"3e43c21827ac2f61","resources_js_Pages_Admin_Setting_Create_js":"0aab8639a94b692c","resources_js_Pages_Admin_Setting_Edit_js":"f80c568f137ef604","resources_js_Pages_Admin_User_ChangePassword_js":"407fc8f1d5b9af3c","resources_js_Pages_Admin_User_Create_js":"d27b6db0ec15112b","resources_js_Pages_Admin_User_Edit_js":"4cd2814cecb194f0","resources_js_Pages_Admin_User_Index_js":"e8f650d2b821ca4e","resources_js_Pages_Admin_User_Role_js":"255039480e16380e","resources_js_Pages_Auth_ForgotPassword_js":"0c3224f409f9d156","resources_js_Pages_Auth_Login_js":"10f8ec7443f4c943","resources_js_Pages_Auth_Register_js":"e3d33b261eb1c488","resources_js_Pages_Auth_ResetPassword_js":"448b39c4f150f86d","resources_js_Pages_Auth_VerifyEmail_js":"9d361b613e94751f","resources_js_Pages_Components_PasswordEditCard_js":"b5b645916f81cc23","resources_js_Pages_Components_ProfileEditCard_js":"5097123084ca0d58","resources_js_Pages_Dashboard_Home_js":"5ac8bcb124e4d33d","resources_js_Pages_Dashboard_User_Profile_js":"39b1848af2698425","resources_js_Pages_Welcome_js":"8cce49c96bfccc52"}[chunkId] + "";
+/******/ 			return "js/" + chunkId + ".js?id=" + {"resources_js_Pages_About_js":"38a405ba931723a4","resources_js_Pages_Admin_Category_Create_js":"a73e5584da18a5ea","resources_js_Pages_Admin_Category_Index_js":"047ce4bb735e7ecc","resources_js_Pages_Admin_Category_Show_js":"86b1f5849fbc3b36","resources_js_Pages_Admin_Category_Sub_Create_js":"81146893def26cbe","resources_js_Pages_Admin_Category_Sub_Show_js":"e50bb6e7a66bf8b8","resources_js_Pages_Admin_Gallery_Create_js":"852c84998e13d04a","resources_js_Pages_Admin_Gallery_Index_js":"1143cec13863d57f","resources_js_Pages_Admin_Gallery_Show_js":"ca194226b76abc8e","resources_js_Pages_Admin_Language_Create_js":"fad1c38cda322d37","resources_js_Pages_Admin_Language_Edit_js":"12d34141b121b0be","resources_js_Pages_Admin_Language_Index_js":"04f8b81c487cc948","resources_js_Pages_Admin_Media_Create_js":"9764b7f80122fe23","resources_js_Pages_Admin_Media_Index_js":"ca7a723fef95b590","resources_js_Pages_Admin_Media_Show_js":"1c948f5a2ce9e9a0","resources_js_Pages_Admin_Post_Create_js":"1edfaaf5fe08daff","resources_js_Pages_Admin_Post_Edit_js":"af9b0db7009ea6dd","resources_js_Pages_Admin_Post_Index_js":"546050ed1f0a4352","resources_js_Pages_Admin_Post_Show_js":"3e6f1c5e079a29e6","resources_js_Pages_Admin_Post_Translate_js":"8a2f9912136d04fc","resources_js_Pages_Admin_Product_Create_js":"c2785c955cfab1ac","resources_js_Pages_Admin_Product_Edit_js":"5e6628d1c7bcd54c","resources_js_Pages_Admin_Product_Index_js":"3bbc5b79804ad636","resources_js_Pages_Admin_Product_Show_js":"935f5ba654772406","resources_js_Pages_Admin_Product_Translate_js":"5fdeecfd033947a0","resources_js_Pages_Admin_Security_AssignPermission_js":"0611368606719515","resources_js_Pages_Admin_Security_CreatePermission_js":"f62826da9e77b0a0","resources_js_Pages_Admin_Security_CreateRole_js":"15ff6c5179134f92","resources_js_Pages_Admin_Security_EditPermission_js":"6c1f8c9a3196244f","resources_js_Pages_Admin_Security_EditRole_js":"6a1e2f6414c520d3","resources_js_Pages_Admin_Security_Index_js":"cb36119670938b95","resources_js_Pages_Admin_Setting_Create_js":"e8cc39b0dcb6e0c7","resources_js_Pages_Admin_Setting_Edit_js":"ad042d2f78ad6e16","resources_js_Pages_Admin_User_ChangePassword_js":"b2b599bd522a08de","resources_js_Pages_Admin_User_Create_js":"00a47034f3196793","resources_js_Pages_Admin_User_Edit_js":"b123d34b1c2ac82d","resources_js_Pages_Admin_User_Index_js":"b1aebd27fe5d2ee1","resources_js_Pages_Admin_User_Role_js":"6e225aa0af2a40e7","resources_js_Pages_Auth_ForgotPassword_js":"0c3224f409f9d156","resources_js_Pages_Auth_Login_js":"10f8ec7443f4c943","resources_js_Pages_Auth_Register_js":"e3d33b261eb1c488","resources_js_Pages_Auth_ResetPassword_js":"448b39c4f150f86d","resources_js_Pages_Auth_VerifyEmail_js":"9d361b613e94751f","resources_js_Pages_Components_PasswordEditCard_js":"b5b645916f81cc23","resources_js_Pages_Components_ProfileEditCard_js":"5097123084ca0d58","resources_js_Pages_Contact_js":"5e46f0183b2ee7ea","resources_js_Pages_Dashboard_Home_js":"29ad9b1f7f92d707","resources_js_Pages_Dashboard_User_Profile_js":"118359aae1a7e2ba","resources_js_Pages_Home_js":"5bd5bae34d063c32","resources_js_Pages_MenuPage_js":"20145300ba1cff4d","resources_js_Pages_Welcome_js":"99088c408eed8c95"}[chunkId] + "";
 /******/ 		};
 /******/ 	})();
 /******/ 	

@@ -12,7 +12,7 @@ class Product extends Model
 {
      use HasFactory, SoftDeletes;
 
-     protected $fillable = ['category_id', 'sub_category_id', 'user_id', 'slug', 'media_id', 'gallery_id', 'currency', 'price', 'is_active', 'is_published'];
+     protected $fillable = ['category_id', 'sub_category_id', 'user_id', 'slug', 'media_id', 'gallery_id', 'currency', 'price', 'is_active', 'is_featured', 'is_published'];
 
      public function texts()
      {

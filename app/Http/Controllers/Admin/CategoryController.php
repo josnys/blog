@@ -21,10 +21,13 @@ class CategoryController extends Controller
                          'id' => $category->id,
                          'names' => $category->text->pluck('name')->toArray(),
                          'url' => $category->url,
+                         'photo' => $category->photoUrl,
                          'menu' => $category->show_menu ? true : false,
                          'menu_caption' => $category->show_menu ? 'Yes' : 'No',
                          'status' => $category->is_active ? true : false,
                          'status_caption' => $category->is_active ? 'Yes' : 'No',
+                         'feature' => $category->is_featured ? true : false,
+                         'feature_caption' => $category->is_featured ? 'Yes' : 'No',
                     ];
                });
                return Inertia::render('Admin/Category/Index', ['info' => ['categories' => $caterories]]);
@@ -55,11 +58,19 @@ class CategoryController extends Controller
      {
           try {
                $input = $request->validated();
+               $mediaName = null;
+               if($request->hasFile('cover')){
+                    $mediaPath = $request->file('cover')->store('category/');
+                    $index = count(explode('/', $mediaPath)) - 1;
+                    $mediaName = explode('/', $mediaPath)[$index];
+               }
 
                $category = new Category;
                $category->url = Category::getUrl($input['name']);
+               $category->photo = $mediaName;
                $category->show_menu = $input['menu'];
                $category->is_active = $input['status'];
+               $category->is_featured = $input['feature'];
                $category->save();
 
                $text = new CategoryTranslate;
@@ -88,10 +99,13 @@ class CategoryController extends Controller
                return Inertia::render('Admin/Category/Show', ['info' => [
                     'id' => $category->id,
                     'url' => $category->url,
+                    'photo' => $category->photoUrl,
                     'menu' => $category->show_menu ? true : false,
                     'menu_caption' => $category->show_menu ? 'Yes' : 'No',
                     'status' => $category->is_active ? true : false,
                     'status_caption' => $category->is_active ? 'Active' : 'Inactive',
+                    'feature' => $category->is_featured ? true : false,
+                    'feature_caption' => $category->is_featured ? 'Yes' : 'No',
                     'texts' => collect($category->text)->map(function($text){
                          return [
                               'id' => $text->id,
@@ -140,9 +154,17 @@ class CategoryController extends Controller
      {
           try {
                $input = $request->validated();
+               $mediaName = $category->photo;
+               if($request->hasFile('cover')){
+                    $mediaPath = $request->file('cover')->store('category/');
+                    $index = count(explode('/', $mediaPath)) - 1;
+                    $mediaName = explode('/', $mediaPath)[$index];
+               }
 
+               $category->photo = $mediaName;
                $category->show_menu = $input['menu'];
                $category->is_active = $input['status'];
+               $category->is_featured = $input['feature'];
                $category->update();
 
                $text->name = $input['name'];

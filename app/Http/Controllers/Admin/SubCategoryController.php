@@ -22,6 +22,7 @@ class SubCategoryController extends Controller
                          'id' => $subcategory->id,
                          'names' => $subcategory->text->pluck('name')->toArray(),
                          'url' => $subcategory->url,
+                         'photo' => $subcategory->photoUrl,
                          'menu' => $subcategory->show_menu ? true : false,
                          'menu_caption' => $subcategory->show_menu ? 'Yes' : 'No',
                          'status' => $subcategory->is_active ? true : false,
@@ -66,10 +67,17 @@ class SubCategoryController extends Controller
      {
           try {
                $input = $request->validated();
+               $mediaName = null;
+               if($request->hasFile('cover')){
+                    $mediaPath = $request->file('cover')->store('category/subs/');
+                    $index = count(explode('/', $mediaPath)) - 1;
+                    $mediaName = explode('/', $mediaPath)[$index];
+               }
 
                $subcategory = new SubCategory;
                $subcategory->category_id = $category->id;
                $subcategory->url = SubCategory::getUrl($input['name']);
+               $subcategory->photo = $mediaName;
                $subcategory->show_sub_menu = $input['menu'];
                $subcategory->is_active = $input['status'];
                $subcategory->save();
@@ -99,6 +107,7 @@ class SubCategoryController extends Controller
                return Inertia::render('Admin/Category/Sub/Show', ['info' => [
                     'id' => $subcategory->id,
                     'url' => $subcategory->url,
+                    'photo' => $subcategory->photoUrl,
                     'menu' => $subcategory->show_menu ? true : false,
                     'menu_caption' => $subcategory->show_menu ? 'Yes' : 'No',
                     'status' => $subcategory->is_active ? true : false,
@@ -149,10 +158,17 @@ class SubCategoryController extends Controller
      {
           try {
                $input = $request->validated();
+               $mediaName = $subcategory->photo;
+               if($request->hasFile('cover')){
+                    $mediaPath = $request->file('cover')->store('category/subs/');
+                    $index = count(explode('/', $mediaPath)) - 1;
+                    $mediaName = explode('/', $mediaPath)[$index];
+               }
 
-               $category->show_menu = $input['menu'];
-               $category->is_active = $input['status'];
-               $category->update();
+               $subcategory->photo = $mediaName;
+               $subcategory->show_menu = $input['menu'];
+               $subcategory->is_active = $input['status'];
+               $subcategory->update();
 
                $text->name = $input['name'];
                $text->update();
