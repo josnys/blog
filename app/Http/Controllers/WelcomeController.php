@@ -38,6 +38,16 @@ class WelcomeController extends Controller
           }
      }
 
+     public function coming(Request $request)
+     {
+          try {
+               return Inertia::render('Coming');
+          } catch (\Exception $e) {
+               info($e);
+               return redirect()->back()->with('error', 'Unable to resolve your request, please try another time.');
+          }
+     }
+
      public function about(Request $request)
      {
           try {
