@@ -20,8 +20,10 @@ class SiteMenuController extends Controller
           try {
                $search_keys = $this->site_service->getValidSegment($request->segments());
                $categories = $this->site_service->resolveMenu($search_keys);
+               if(count($categories) == 0){
+                    return redirect()->back()->with('warning', 'No data found.');
+               }
                $data = $this->site_service->getAllMenuPostProduct($categories);
-               // dd($categories);
                return Inertia::render('MenuPage', ['info' => [
                     'page_title' => $categories[0]['name'],
                     'categories' => $categories,
