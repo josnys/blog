@@ -15,7 +15,7 @@ function Footer() {
           <div className="container px-6 py-8 mx-auto">
                <div className="text-center">
                     <a href="/" className="text-2xl font-bold text-gray-800 dark:text-white hover:text-gray-700 dark:hover:text-gray-300">{app.name}</a>
-                    <div className="flex flex-col mt-4 sm:flex-row sm:items-center sm:justify-center">
+                    <div className="flex mt-4 items-center justify-center">
                          {app.twitter && (<a className="mx-2" href={`https://twitter.com/${app.twitter}`} aria-label="Twitter">
                               <Icon name="twitter" className={iconSun} />
                          </a>)}
@@ -29,7 +29,7 @@ function Footer() {
                </div>
                <hr className="my-10 border-gray-200 dark:border-gray-700" />
                <div className="flex flex-col items-center sm:flex-row sm:justify-between">
-                    <p className="text-sm text-gray-400">© Copyright {app.year}. All Rights Reserved.</p>
+                    <p className="text-sm text-red-600">© Copyright {app.year}. All Rights Reserved.</p>
                     <div className="flex mt-3 -mx-2 sm:mt-0">
                          <a href="https://twitter.com/josnys" target="_blank" className="mx-2 text-sm text-gray-400 hover:text-gray-500 dark:hover:text-gray-300" aria-label="Reddit">Developped by Josny Severe</a>
                     </div>

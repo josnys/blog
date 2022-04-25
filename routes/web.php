@@ -31,7 +31,8 @@ use App\Http\Controllers\SiteMenuController;
 |
 */
 
-Route::get('/', [WelcomeController::class, 'index'])->name('site');
+Route::get('/', [WelcomeController::class, 'coming'])->name('coming');
+Route::get('/site', [WelcomeController::class, 'index'])->name('site');
 Route::get('/about-us', [WelcomeController::class, 'about'])->name('site.about');
 Route::get('/contact-us', [WelcomeController::class, 'contact'])->name('site.contact');
 Route::any('menu/{url}', [SiteMenuController::class, 'resolveMenu'])->where('url', '.*')->name('site.menu');

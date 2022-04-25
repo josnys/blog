@@ -72,21 +72,24 @@ class SiteService {
      {
           try {
                return [
-                    'post' => Post::with('cover')->with(['details' => function($details){
-                         return $details->where('language_id', $this->lang);
-                    }])->active()->published()->where('category_id', $categories[0]['id'])->get()->transform(function($post){
-                         return [
-                              'id' => $post->id,
-                              'image' => $post->cover->thumbUrl,
-                              'url' => $post->slug,
-                              'title' => $post->details[0]->title,
-                              'intro' => $post->details[0]->intro,
-                              'date' => $post->published_at
-                         ];
-                    })->toArray(),
+                    'post' => [
+                         'title' => 'Articles',
+                         'data' => Post::with('cover')->with(['details' => function($details){
+                              return $details->where('language_id', $this->lang);
+                         }])->active()->published()->where('category_id', $categories[0]['id'])->get()->transform(function($post){
+                              return [
+                                   'id' => $post->id,
+                                   'image' => $post->cover->thumbUrl,
+                                   'url' => $post->slug,
+                                   'title' => $post->details[0]->title,
+                                   'intro' => $post->details[0]->intro,
+                                   'date' => $post->published_at
+                              ];
+                         })->toArray()
+                    ],
                     'products' => [
                          'title' => 'Products',
-                         'data' =>Product::with('cover')->with(['texts' => function($texts){
+                         'data' => Product::with('cover')->with(['texts' => function($texts){
                               return $texts->where('language_id', $this->lang);
                          }])->active()->published()->where('category_id', $categories[0]['id'])->get()->transform(function($product){
                               return [
